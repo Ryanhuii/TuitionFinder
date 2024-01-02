@@ -10,6 +10,7 @@ public class SpringTuitionFinderApplication {
 		// don't use this line.
 		// Instead, use the javaFX Application class to run the application
 		// SpringApplication.run(SpringTuitionFinderApplication.class, args);
+
 		Application.launch(TuitionFinderApplication.class, args);
 	}
 
