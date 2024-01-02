@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:1234@tuitionfinder.5n1p7cm.mongodb.net/?retryWrites=true&w=majority
+      database: TuitionFinder
