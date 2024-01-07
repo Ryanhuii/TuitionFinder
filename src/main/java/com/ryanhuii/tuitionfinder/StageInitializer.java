@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @Component
 public class StageInitializer implements ApplicationListener<StageReadyEvent> {
-    @Value("classpath:/login.fxml")
+    @Value("classpath:/pages/login.fxml")
     private Resource loginResource;
     private String applicationTitle;
     private ApplicationContext applicationContext;
@@ -35,8 +35,8 @@ public class StageInitializer implements ApplicationListener<StageReadyEvent> {
             Parent parent = fxmlLoader.load();
 
             Stage stage = event.getStage();
-            // wireframe dimensions are 1440x1024
-            stage.setScene(new Scene(parent, 1440, 1024));
+            // wireframe dimensions are 1440x1024, although I've realised that it could be 1280,800
+            stage.setScene(new Scene(parent, 1280, 800));
             stage.setTitle(applicationTitle);
             stage.show();
         } catch (IOException e) {

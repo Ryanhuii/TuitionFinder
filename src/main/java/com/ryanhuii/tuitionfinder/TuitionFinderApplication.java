@@ -1,5 +1,7 @@
 package com.ryanhuii.tuitionfinder;
 
+import atlantafx.base.theme.PrimerDark;
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -11,6 +13,9 @@ public class TuitionFinderApplication extends Application {
     private ConfigurableApplicationContext applicationContext;
     @Override
     public void start(Stage stage) {
+        // find more themes in 'atlantafx.base.theme' package
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+
         applicationContext.publishEvent(new StageReadyEvent(stage));
     }
 

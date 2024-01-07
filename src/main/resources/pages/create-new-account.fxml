@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.LoginController">
+   <children>
+      <HBox alignment="CENTER" spacing="2.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+            <Label text="TuitionFinder">
+               <font>
+                  <Font name="NiveauGroteskBold" size="32.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="150.0" top="40.0" />
+         </VBox.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </HBox>
+      <Label text="Create new account">
+         <font>
+            <Font name="NiveauGroteskBold" size="48.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="36.0" />
+         </VBox.margin>
+      </Label>
+      <Label text="I am a...">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <VBox fx:id="vBoxParent" alignment="TOP_CENTER" onMouseEntered="#highlightParentOn" onMouseExited="#highlightParentOff" prefHeight="200.0" prefWidth="100.0" style="-fx-border-radius: 10; -fx-border-color: #D9D9D9;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/family.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label text="Parent">
+                     <font>
+                        <Font name="NiveauGroteskMedium" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </VBox>
+            <VBox fx:id="vBoxTutor" alignment="TOP_CENTER" onMouseEntered="#highlightTutorOn" onMouseExited="#highlightTutorOff" prefHeight="200.0" prefWidth="100.0" style="-fx-border-radius: 10; -fx-border-color: #D9D9D9;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/teacher.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label text="Tutor">
+                     <font>
+                        <Font name="NiveauGroteskMedium" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="40.0" />
+         </VBox.margin>
+      </HBox>
+      <Button mnemonicParsing="false" style="-fx-border-width: 0;" text="Next">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>
