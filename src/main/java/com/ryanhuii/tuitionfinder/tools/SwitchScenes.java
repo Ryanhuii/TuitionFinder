@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SwitchScenes {
+    // should probably give it a shorter name...
     public static void switchScenesWithinSameWindow (String pageName, ActionEvent event, Class pageClass) {
         try {
             Parent root = FXMLLoader.load(pageClass.getResource("/pages/" + pageName));
