@@ -6,11 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.LoginController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.scene_controllers.NewAccountController">
    <children>
       <HBox alignment="CENTER" spacing="2.0">
          <children>
@@ -53,61 +54,75 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
          <children>
-            <VBox fx:id="vBoxParent" alignment="TOP_CENTER" onMouseEntered="#highlightParentOn" onMouseExited="#highlightParentOff" prefHeight="200.0" prefWidth="100.0" style="-fx-border-radius: 10; -fx-border-color: #D9D9D9;">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/family.png" />
-                     </image>
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </ImageView>
-                  <Label text="Parent">
-                     <font>
-                        <Font name="NiveauGroteskMedium" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </VBox>
-            <VBox fx:id="vBoxTutor" alignment="TOP_CENTER" onMouseEntered="#highlightTutorOn" onMouseExited="#highlightTutorOff" prefHeight="200.0" prefWidth="100.0" style="-fx-border-radius: 10; -fx-border-color: #D9D9D9;">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/teacher.png" />
-                     </image>
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </ImageView>
-                  <Label text="Tutor">
-                     <font>
-                        <Font name="NiveauGroteskMedium" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </VBox>
+            <BorderPane fx:id="borderPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="140.0" style="-fx-border-radius: 10; -fx-border-color: #D9D9D9;">
+               <center>
+                  <VBox fx:id="vBoxParent" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onParentSelected" onMouseEntered="#highlightParentOn" onMouseExited="#highlightParentOff" prefHeight="174.0" prefWidth="134.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/family.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label text="Parent">
+                           <font>
+                              <Font name="NiveauGroteskMedium" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </VBox>
+               </center>
+            </BorderPane>
+            <BorderPane fx:id="borderPaneTutor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="140.0" style="-fx-border-radius: 10; -fx-border-color: #D9d9d9;">
+               <center>
+                  <VBox fx:id="vBoxTutor" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onTutorSelected" onMouseEntered="#highlightTutorOn" onMouseExited="#highlightTutorOff" prefHeight="174.0" prefWidth="134.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/teacher.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label text="Tutor">
+                           <font>
+                              <Font name="NiveauGroteskMedium" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </VBox>
+               </center>
+            </BorderPane>
          </children>
          <VBox.margin>
             <Insets bottom="40.0" />
          </VBox.margin>
       </HBox>
-      <Button mnemonicParsing="false" style="-fx-border-width: 0;" text="Next">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
+      <HBox alignment="CENTER" spacing="100.0">
+         <children>
+            <Button fx:id="btnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBackClicked" prefHeight="36.0" />
+            <Button fx:id="btnNext" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onNextClicked" prefHeight="36.0" style="-fx-border-width: 0;" text="Next">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCheese" disable="true" mnemonicParsing="false" prefHeight="36.0" />
+         </children>
+      </HBox>
    </children>
 </VBox>
