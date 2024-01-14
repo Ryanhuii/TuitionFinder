@@ -1,11 +1,10 @@
-package com.ryanhuii.tuitionfinder.scene_controllers;
+package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
-import com.ryanhuii.tuitionfinder.tools.SwitchScenes;
-import jakarta.annotation.PostConstruct;
+import com.ryanhuii.tuitionfinder.classes.Account;
+import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,13 +18,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
 @Component
 public class NewAccountController {
-
-    @Value("classpath:/pages/login.fxml")
-    private Resource loginResource;
 
     // my variables for switching scenes
     private Stage stage;
@@ -33,6 +27,8 @@ public class NewAccountController {
     private Parent root;
     String selectedAccountType = "";
 
+    @FXML
+    private VBox vBox;
     @FXML
     private VBox vBoxParent;
     @FXML
@@ -48,33 +44,44 @@ public class NewAccountController {
     @FXML
     private Button btnCheese;
 
-    // this is so dumb istg
     public void initialize() {
 
+        // Removes the autofocus
+        Platform.runLater( () -> vBox.requestFocus() );
+
         updateSelectedCard();
-        double iconDimension = 20;
-        ImageView backArrow = new ImageView(new Image(getClass().getResourceAsStream("/images/arrow_back.png")));
-        backArrow.setFitHeight(iconDimension);
-        backArrow.setFitWidth(iconDimension);
 
-        ImageView copy = new ImageView(new Image(getClass().getResourceAsStream("/images/arrow_back.png")));
-        copy.setFitHeight(iconDimension);
-        copy.setFitWidth(iconDimension);
+        // code for setting up buttons
+//        double iconDimension = 20;
+//        ImageView backArrow = new ImageView(new Image(getClass().getResourceAsStream("/images/arrow_back.png")));
+//        backArrow.setFitHeight(iconDimension);
+//        backArrow.setFitWidth(iconDimension);
+//        // lol. cheesing it.
+//        ImageView copy = new ImageView(new Image(getClass().getResourceAsStream("/images/arrow_back.png")));
+//        copy.setFitHeight(iconDimension);
+//        copy.setFitWidth(iconDimension);
+//
+//        btnBack.setGraphic(backArrow);
+//        btnCheese.setGraphic(copy);
+//        btnCheese.setVisible(false);
 
-        btnBack.setGraphic(backArrow);
-        btnCheese.setGraphic(copy);
-        btnCheese.setVisible(false);
+        TuitionFinderTools.setUpBackButton(btnBack,btnCheese,getClass());
     }
 
     @FXML
     void onNextClicked(MouseEvent event) {
+        //System.out.println("going to account details page");
 
+        // Pass on the type of account being created.
+        Account account = new Account();
+        account.setAccountType(selectedAccountType);
+        TuitionFinderTools.createNewAccountToAccountDetails(event, getClass(),account);
     }
 
     @FXML
     void onBackClicked(ActionEvent event) {
-        System.out.println("going back to login page");
-        SwitchScenes.switchScenesWithinSameWindow("login.fxml", event, getClass());
+        //System.out.println("going back to login page");
+        TuitionFinderTools.switchScene("/account/login.fxml", event, getClass());
     }
     @FXML
     void onParentSelected(MouseEvent event) {

@@ -1,9 +1,8 @@
-package com.ryanhuii.tuitionfinder.scene_controllers;
-import com.ryanhuii.tuitionfinder.tools.SwitchScenes;
+package com.ryanhuii.tuitionfinder.scene_controllers.account;
+import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,11 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 public class LoginController {
@@ -34,18 +29,20 @@ public class LoginController {
 
     @FXML
     private Button btn_login;
-
     @FXML
     private Label error_password;
-
     @FXML
     private Label error_username;
-
     @FXML
     private TextField txt_password;
-
     @FXML
     private TextField txt_username;
+    @FXML
+    private VBox vBox;
+
+    public void initialize() {
+        Platform.runLater( () -> vBox.requestFocus() );
+    }
 
     @FXML
     void onLogin(ActionEvent event) {
@@ -66,7 +63,7 @@ public class LoginController {
     @FXML
     void createNewAccount(MouseEvent event) {
         System.out.println("creating new account");
-        SwitchScenes.switchScenesWithinSameWindow("create-new-account.fxml", event, getClass());
+        TuitionFinderTools.switchScene("/account/create-new-account.fxml", event, getClass());
 //        try {
 //            root = FXMLLoader.load(createNewAccountResource.getURL());
 //            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

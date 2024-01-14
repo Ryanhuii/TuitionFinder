@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @Component
 public class StageInitializer implements ApplicationListener<StageReadyEvent> {
-    @Value("classpath:/pages/login.fxml")
+    @Value("classpath:/pages/account/login.fxml")
     private Resource loginResource;
     private String applicationTitle;
     private ApplicationContext applicationContext;

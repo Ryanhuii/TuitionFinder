@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo.png" />
+                  <Image url="@../../images/logo.png" />
                </image>
             </ImageView>
             <Label text="TuitionFinder">
