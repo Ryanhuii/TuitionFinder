@@ -1,9 +1,9 @@
 package com.ryanhuii.tuitionfinder.tools;
 
 import com.ryanhuii.tuitionfinder.classes.Account;
-import com.ryanhuii.tuitionfinder.scene_controllers.account.AccountDetailsController;
-import javafx.application.Platform;
+import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupParentController;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -48,9 +47,9 @@ public class TuitionFinderTools {
     }
 
     // Special function for transitioning from create-new-account to account-details
-    public static void createNewAccountToAccountDetails(MouseEvent event, Class pageClass, Account account) {
+    public static void nextSetupPage(Event event, Class pageClass, String pageName, Account account) {
         try {
-            String pageName = "/account/account-details.fxml";
+//             = "/account/account-details.fxml";
             // splitting up the code above, so I can access its controller
             FXMLLoader loader = new FXMLLoader(pageClass.getResource("/pages" + pageName));
             Parent root = loader.load();
@@ -60,8 +59,9 @@ public class TuitionFinderTools {
             stage.setScene(scene);
             stage.show();
 
-            AccountDetailsController controller = loader.getController();
-            controller.updateAccountDetails(account);
+            AccountDetailsUpdater controller = loader.getController();
+            controller.transferAccountDetails(account);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -94,5 +94,10 @@ public class TuitionFinderTools {
         }
 
         return sb.toString();
+    }
+
+    public static void completeSetup(Event event, Class<? extends SetupParentController> className, Account account,
+                                     com.ryanhuii.tuitionfinder.classes.Parent parent, Object o) {
+        System.out.println("account setup complete");
     }
 }

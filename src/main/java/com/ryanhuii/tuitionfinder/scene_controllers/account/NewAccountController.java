@@ -8,14 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -75,7 +71,7 @@ public class NewAccountController {
         // Pass on the type of account being created.
         Account account = new Account();
         account.setAccountType(selectedAccountType);
-        TuitionFinderTools.createNewAccountToAccountDetails(event, getClass(),account);
+        TuitionFinderTools.nextSetupPage(event, getClass(), "/account/account-details.fxml",account);
     }
 
     @FXML

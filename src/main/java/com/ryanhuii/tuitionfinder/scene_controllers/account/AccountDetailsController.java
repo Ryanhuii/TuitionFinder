@@ -1,6 +1,7 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
 import com.ryanhuii.tuitionfinder.classes.Account;
+import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
 import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import javafx.scene.layout.VBox;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AccountDetailsController{
+public class AccountDetailsController implements AccountDetailsUpdater {
 
     Account account;
 
@@ -37,15 +38,25 @@ public class AccountDetailsController{
     private PasswordField textFieldConfirmPassword;
     @FXML
     private Label errorMessage;
+
+
     public void initialize() {
         // Removes the autofocus
-        Platform.runLater( () -> vBoxFocus.requestFocus() );
-        Platform.runLater( () -> System.out.println(account.getAccountType()) );
-        TuitionFinderTools.setUpBackButton(btnBack,btnCheese,getClass());
+        Platform.runLater(() -> vBoxFocus.requestFocus());
+        Platform.runLater(() ->
+        {
+            if (account.getPassword() != null) {
+                populateFields();
+                btnNext.setDisable(false);
+            }
+        });
+        TuitionFinderTools.setUpBackButton(btnBack, btnCheese, getClass());
     }
+
+
     @FXML
     void onBackClicked(ActionEvent event) {
-        TuitionFinderTools.switchScene("/account/create-new-account.fxml",event,getClass());
+        TuitionFinderTools.switchScene("/account/create-new-account.fxml", event, getClass());
     }
 
     @FXML
@@ -63,7 +74,16 @@ public class AccountDetailsController{
                 account.setUsername(textFieldUsername.getText());
                 account.setEmail(textFieldEmail.getText());
                 account.setPassword(textFieldPassword.getText());
-                System.out.println(account.toString());
+
+                // depending on account type, send them to either page
+                switch (account.getAccountType()) {
+                    case "Parent":
+                        TuitionFinderTools.nextSetupPage(event, getClass(), "/account/setup-parent.fxml", account);
+                        break;
+                    case "Tutor":
+                        TuitionFinderTools.nextSetupPage(event, getClass(), "/account/setup-tutor-1.fxml", account);
+                        break;
+                }
             }
         } else {
             errorMessage.setText("Passwords do not match");
@@ -81,8 +101,15 @@ public class AccountDetailsController{
             btnNext.setDisable(true);
         }
     }
-
-    public void updateAccountDetails(Account account) {
+    private void populateFields() {
+        textFieldUsername.setText(account.getUsername());
+        textFieldEmail.setText(account.getEmail());
+        textFieldPassword.setText(account.getPassword());
+        textFieldConfirmPassword.setText(account.getPassword());
+    }
+    @Override
+    public void transferAccountDetails(Account account) {
         this.account = account;
     }
+
 }
