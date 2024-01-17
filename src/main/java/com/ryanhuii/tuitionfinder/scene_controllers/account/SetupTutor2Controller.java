@@ -5,7 +5,6 @@ import com.ryanhuii.tuitionfinder.classes.Tutor;
 import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
 import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
 import com.ryanhuii.tuitionfinder.tools.TutorDetailsUpdater;
-import com.sun.prism.shader.Solid_TextureRGB_AlphaTest_Loader;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,17 +16,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.CheckComboBox;
-import org.controlsfx.control.IndexedCheckModel;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetailsUpdater {
     Account account;
     Tutor tutor = new Tutor();
     String selectedTutorType = "";
+    List<String> selectedSubjects;
     String[] tutorTypes = {"Part-Time", "Full-Time", "Ex-MOE"};
 
     @FXML
@@ -46,7 +46,24 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
     private VBox vBoxFocus;
     @FXML
     private CheckComboBox<String> comboBoxSubjects;
-    //<CheckComboBox fx:id="comboBoxSubjects" prefWidth="350.0"/>
+
+    final ObservableList<String> subjectsList = FXCollections.observableArrayList(
+            "English",
+            "Chinese",
+            "A Math",
+            "E Math",
+            "Math (Lower-Sec)",
+            "Biology",
+            "Chemistry",
+            "Physics",
+            "Science (Lower-Sec)",
+            "Computing",
+            "D&T",
+            "Art",
+            "History",
+            "Geography",
+            "Social Studies"
+    );
 
     public void initialize() {
         // Removes the autofocus
@@ -81,30 +98,25 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
         });
 
         // code for setting up the check combo box for the subjects
-        ObservableList<String> programmingLanguages = FXCollections.observableArrayList(
-                "Java",
-                "Cpp",
-                "Python",
-                "C#",
-                "Kotlin"
-        );
-        comboBoxSubjects.getItems().setAll(programmingLanguages);
+        comboBoxSubjects.getItems().setAll(subjectsList);
+        comboBoxSubjects.setTitle("What do you teach?");
         comboBoxSubjects.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
             @Override
             public void onChanged(Change<? extends String> change) {
                 System.out.println(comboBoxSubjects.getCheckModel().getCheckedItems());
+                selectedSubjects = comboBoxSubjects.getCheckModel().getCheckedItems();
+                setNextButton();
             }
         });
-        comboBoxSubjects.setTitle("What do you teach?");
-        System.out.println(comboBoxSubjects.getTitle());
-        System.out.println(comboBoxSubjects.getItems().toString());
+
+        txtAreaEducation.setWrapText(true);
 
         // end of initialize
     }
 
     @FXML
     void checkFields(KeyEvent event) {
-        btnNext.setDisable(true);
+        setNextButton();
     }
 
     @FXML
@@ -116,11 +128,21 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
     @FXML
     void onNextClicked(MouseEvent event) {
         // You're all set! Pass the completed account and tutor classes to the next page for database object creation
-        setNextButton();
+        System.out.println("Tutor account creation done.");
+        tutor.setTutorType(selectedTutorType);
+        tutor.setExperience(Integer.parseInt(txtExperience.getText()));
+        tutor.setSubjects(selectedSubjects);
+        tutor.setEducation(txtAreaEducation.getText());
+        System.out.println(tutor.toString());
+        System.out.println(account.toString());
+
+        TuitionFinderTools.completeSetup(event,getClass(),account,tutor);
+
     }
     private void setNextButton() {
         btnNext.setDisable(selectedTutorType.isBlank()
-                || txtExperience.getText().isBlank() || txtAreaEducation.getText().isEmpty());
+                || txtExperience.getText().isBlank() || txtAreaEducation.getText().isEmpty()
+                || selectedSubjects.isEmpty());
     }
 
     @Override

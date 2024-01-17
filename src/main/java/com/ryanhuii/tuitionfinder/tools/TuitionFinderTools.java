@@ -144,7 +144,7 @@ public class TuitionFinderTools {
         System.out.println("account setup for parent complete");
     }
 
-    public static void completeSetup(Event event, Class<? extends SetupParentController> className, Account account,
+    public static void completeSetup(Event event, Class<? extends SetupTutor2Controller> className, Account account,
                                      Tutor tutor) {
         System.out.println("account setup for tutor complete");
     }

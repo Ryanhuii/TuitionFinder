@@ -58,7 +58,7 @@
                </opaqueInsets>
             </HBox>
             <CheckComboBox fx:id="comboBoxSubjects" prefWidth="350.0"/>
-            <TextArea fx:id="txtAreaEducation" prefHeight="200.0" prefWidth="200.0" promptText="Educational credentials" />
+            <TextArea fx:id="txtAreaEducation" prefHeight="200.0" prefWidth="200.0" promptText="Educational credentials" onKeyTyped="#checkFields"/>
          </children>
          <VBox.margin>
             <Insets bottom="40.0" />
