@@ -62,7 +62,7 @@ public class SetupParentController implements AccountDetailsUpdater {
     void onNextClicked(MouseEvent event) {
         if (!btnNext.isDisabled()) {
             Parent parentAccount = createNewParentAccount(account.getUid(),txtPostalCode.getText(),txtStreetName.getText(),txtBlockNumber.getText());
-            TuitionFinderTools.completeSetup(event,getClass(),account,parentAccount,null);
+            TuitionFinderTools.completeSetup(event,getClass(),account,parentAccount);
         } else {
             System.out.println("this shouldn't happen!");
         }

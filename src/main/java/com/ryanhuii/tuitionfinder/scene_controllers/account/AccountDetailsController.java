@@ -43,6 +43,9 @@ public class AccountDetailsController implements AccountDetailsUpdater {
     public void initialize() {
         // Removes the autofocus
         Platform.runLater(() -> vBoxFocus.requestFocus());
+        TuitionFinderTools.setUpBackButton(btnBack, btnCheese, getClass());
+
+        // if coming back from a page ahead, repopulate the fields
         Platform.runLater(() ->
         {
             if (account.getPassword() != null) {
@@ -50,7 +53,6 @@ public class AccountDetailsController implements AccountDetailsUpdater {
                 btnNext.setDisable(false);
             }
         });
-        TuitionFinderTools.setUpBackButton(btnBack, btnCheese, getClass());
     }
 
 

@@ -1,5 +1,12 @@
 package com.ryanhuii.tuitionfinder.classes;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Arrays;
+
+@Getter @Setter @NoArgsConstructor
 public class Tutor {
     private String uid;
     private String name;
@@ -21,67 +28,17 @@ public class Tutor {
         this.education = education;
     }
 
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getTutorType() {
-        return tutorType;
-    }
-
-    public void setTutorType(String tutorType) {
-        this.tutorType = tutorType;
-    }
-
-    public int getExperience() {
-        return experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
-    public String[] getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(String[] subjects) {
-        this.subjects = subjects;
-    }
-
-    public String getEducation() {
-        return education;
-    }
-
-    public void setEducation(String education) {
-        this.education = education;
+    @Override
+    public String toString() {
+        return "Tutor{" +
+                "uid='" + uid + '\'' +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", tutorType='" + tutorType + '\'' +
+                ", experience=" + experience +
+                ", subjects=" + Arrays.toString(subjects) +
+                ", education='" + education + '\'' +
+                '}';
     }
 }

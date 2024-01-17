@@ -1,7 +1,10 @@
 package com.ryanhuii.tuitionfinder.tools;
 
 import com.ryanhuii.tuitionfinder.classes.Account;
+import com.ryanhuii.tuitionfinder.classes.Tutor;
 import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupParentController;
+import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupTutor1Controller;
+import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupTutor2Controller;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +52,6 @@ public class TuitionFinderTools {
     // Special function for transitioning from create-new-account to account-details
     public static void nextSetupPage(Event event, Class pageClass, String pageName, Account account) {
         try {
-//             = "/account/account-details.fxml";
             // splitting up the code above, so I can access its controller
             FXMLLoader loader = new FXMLLoader(pageClass.getResource("/pages" + pageName));
             Parent root = loader.load();
@@ -67,8 +69,48 @@ public class TuitionFinderTools {
         }
     }
 
-    // Setting up the appearance of the back button
+    public static void nextTutorSetupPage(Event event, Class pageClass, Account account, Tutor tutor) {
+        // this function is for tutor setup part 1 to part 2
+        try {
+            FXMLLoader loader = new FXMLLoader(pageClass.getResource("/pages/account/setup-tutor-2.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            SetupTutor2Controller controller = loader.getController();
+            controller.transferTutorDetails(tutor);
+            controller.transferAccountDetails(account);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void previousTutorSetupPage(Event event, Class pageClass, Account account, Tutor tutor) {
+        // go back; this function is for tutor setup part 2 to part 1
+        try {
+            FXMLLoader loader = new FXMLLoader(pageClass.getResource("/pages/account/setup-tutor-1.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            SetupTutor1Controller controller = loader.getController();
+            controller.transferTutorDetails(tutor);
+            controller.transferAccountDetails(account);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void setUpBackButton(Button btnBack, Button btnCheese, Class pageClass) {
+        // Setting up the appearance of the back button
         double iconDimension = 20;
         ImageView backArrow = new ImageView(new Image(pageClass.getResourceAsStream("/images/arrow_back.png")));
         backArrow.setFitHeight(iconDimension);
@@ -96,8 +138,14 @@ public class TuitionFinderTools {
         return sb.toString();
     }
 
+    // This function takes in the completed classes, creates them in the database, then directs the user to the completion screen.
     public static void completeSetup(Event event, Class<? extends SetupParentController> className, Account account,
-                                     com.ryanhuii.tuitionfinder.classes.Parent parent, Object o) {
-        System.out.println("account setup complete");
+                                     com.ryanhuii.tuitionfinder.classes.Parent parent) {
+        System.out.println("account setup for parent complete");
+    }
+
+    public static void completeSetup(Event event, Class<? extends SetupParentController> className, Account account,
+                                     Tutor tutor) {
+        System.out.println("account setup for tutor complete");
     }
 }

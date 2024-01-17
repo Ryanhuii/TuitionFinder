@@ -5,14 +5,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<VBox fx:id="vBoxFocus" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.scene_controllers.account.SetupTutor1Controller">
+<?import org.controlsfx.control.CheckComboBox?>
+<VBox fx:id="vBoxFocus" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.scene_controllers.account.SetupTutor2Controller">
    <children>
       <HBox alignment="CENTER" spacing="2.0">
          <children>
@@ -37,7 +38,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </HBox>
-      <Label text="Personal Info">
+      <Label text="Tutor Info">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -47,17 +48,17 @@
       </Label>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" spacing="16.0">
          <children>
-            <TextField fx:id="txtFullName" onKeyTyped="#checkFields" promptText="Full Name" />
             <HBox alignment="CENTER" spacing="30.0">
                <children>
-                  <ComboBox fx:id="choiceGender" prefWidth="160.0" promptText="Select Gender" />
-                  <TextField fx:id="txtAge" onAction="#checkFields" prefWidth="160.0" promptText="Age" />
+                  <ComboBox fx:id="choiceTutorType" prefWidth="160.0" promptText="Tutor Type"/>
+                  <TextField fx:id="txtExperience" prefWidth="160.0" promptText="Years of Experience" />
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </HBox>
-            <Label fx:id="errorMessage" textFill="#f24f4f">
-               <font>
-                  <Font name="Inter Regular" size="16.0" />
-               </font></Label>
+            <CheckComboBox fx:id="comboBoxSubjects" prefWidth="350.0"/>
+            <TextArea fx:id="txtAreaEducation" prefHeight="200.0" prefWidth="200.0" promptText="Educational credentials" />
          </children>
          <VBox.margin>
             <Insets bottom="40.0" />
