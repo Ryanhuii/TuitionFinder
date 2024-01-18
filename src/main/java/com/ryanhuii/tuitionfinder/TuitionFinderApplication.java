@@ -1,6 +1,5 @@
 package com.ryanhuii.tuitionfinder;
 
-import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.application.Platform;

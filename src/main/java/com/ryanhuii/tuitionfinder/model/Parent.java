@@ -1,4 +1,4 @@
-package com.ryanhuii.tuitionfinder.classes;
+package com.ryanhuii.tuitionfinder.model;
 
 import lombok.Getter;
 import lombok.Setter;

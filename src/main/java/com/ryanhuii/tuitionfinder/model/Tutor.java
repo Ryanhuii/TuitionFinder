@@ -1,11 +1,10 @@
-package com.ryanhuii.tuitionfinder.classes;
+package com.ryanhuii.tuitionfinder.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor

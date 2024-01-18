@@ -1,12 +1,11 @@
 package com.ryanhuii.tuitionfinder.tools;
 
-import com.ryanhuii.tuitionfinder.classes.Account;
-import com.ryanhuii.tuitionfinder.classes.Tutor;
+import com.ryanhuii.tuitionfinder.model.Account;
+import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.scene_controllers.account.AllSetController;
 import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupParentController;
 import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupTutor1Controller;
 import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupTutor2Controller;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -128,7 +126,7 @@ public class TuitionFinderTools {
 
     // These 2 functions takes in the completed classes, creates them in the database, then directs the user to the completion screen.
     public static void completeParentSetup(Event event, Class<? extends SetupParentController> className, Account account,
-                                     com.ryanhuii.tuitionfinder.classes.Parent parent) {
+                                     com.ryanhuii.tuitionfinder.model.Parent parent) {
         System.out.println("account setup for parent complete");
         try {
             FXMLLoader loader = new FXMLLoader(className.getResource("/pages/account/all-set.fxml"));
@@ -147,10 +145,11 @@ public class TuitionFinderTools {
         }
     }
     public static void completeTutorSetup(Event event, Class<? extends SetupTutor2Controller> className, Account account,
-                                     Tutor tutor) {
+                                          Tutor tutor) {
         System.out.println("account setup for tutor complete");
         try {
             FXMLLoader loader = new FXMLLoader(className.getResource("/pages/account/all-set.fxml"));
+            //loader.setControllerFactory(applicationContext::getBean);
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

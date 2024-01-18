@@ -1,7 +1,7 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
-import com.ryanhuii.tuitionfinder.classes.Account;
-import com.ryanhuii.tuitionfinder.classes.Tutor;
+import com.ryanhuii.tuitionfinder.model.Account;
+import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
 import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
 import com.ryanhuii.tuitionfinder.tools.TutorDetailsUpdater;
@@ -52,7 +52,7 @@ public class SetupTutor1Controller implements AccountDetailsUpdater , TutorDetai
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 selectedGender = genders[t1.intValue()];
-                System.out.println(selectedGender);
+                //System.out.println(selectedGender);
                 setNextButton();
             }
         });

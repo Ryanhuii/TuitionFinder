@@ -1,7 +1,7 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
-import com.ryanhuii.tuitionfinder.classes.Account;
-import com.ryanhuii.tuitionfinder.classes.Tutor;
+import com.ryanhuii.tuitionfinder.model.Account;
+import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
 import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
 import com.ryanhuii.tuitionfinder.tools.TutorDetailsUpdater;
@@ -13,7 +13,10 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -128,13 +131,13 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
     @FXML
     void onNextClicked(MouseEvent event) {
         // You're all set! Pass the completed account and tutor classes to the next page for database object creation
-        System.out.println("Tutor account creation done.");
+        //System.out.println("Tutor account creation done.");
         tutor.setTutorType(selectedTutorType);
         tutor.setExperience(Integer.parseInt(txtExperience.getText()));
         tutor.setSubjects(selectedSubjects);
         tutor.setEducation(txtAreaEducation.getText());
-        System.out.println(tutor.toString());
-        System.out.println(account.toString());
+        //System.out.println(tutor.toString());
+        //System.out.println(account.toString());
 
         TuitionFinderTools.completeTutorSetup(event,getClass(),account,tutor);
 

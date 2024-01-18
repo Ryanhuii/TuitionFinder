@@ -1,7 +1,7 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
-import com.ryanhuii.tuitionfinder.classes.Account;
-import com.ryanhuii.tuitionfinder.classes.Parent;
+import com.ryanhuii.tuitionfinder.model.Account;
+import com.ryanhuii.tuitionfinder.model.Parent;
 import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
 import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
 import javafx.application.Platform;
