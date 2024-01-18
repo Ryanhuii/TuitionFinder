@@ -24,7 +24,7 @@ public class LoginController {
     // The page that I'll be switching between.
     // Ok update: this gives problems. Sometimes it doesn't load, giving me null resource errors.
     // I've chosen to instead make my own function that directly takes the fxml file name. Way easier.
-    // @Value("classpath:/pages/create-new-account.fxml")
+    // @Value("classpath:/pages/unused-create-new-account.fxml")
     // private Resource createNewAccountResource;
 
     @FXML

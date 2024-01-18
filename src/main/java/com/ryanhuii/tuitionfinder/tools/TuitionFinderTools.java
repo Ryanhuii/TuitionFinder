@@ -2,6 +2,7 @@ package com.ryanhuii.tuitionfinder.tools;
 
 import com.ryanhuii.tuitionfinder.classes.Account;
 import com.ryanhuii.tuitionfinder.classes.Tutor;
+import com.ryanhuii.tuitionfinder.scene_controllers.account.AllSetController;
 import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupParentController;
 import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupTutor1Controller;
 import com.ryanhuii.tuitionfinder.scene_controllers.account.SetupTutor2Controller;
@@ -24,20 +25,7 @@ public class TuitionFinderTools {
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final int STRING_LENGTH = 10;
 
-    public static void switchScene(String pageName, ActionEvent event, Class pageClass) {
-        try {
-            Parent root = FXMLLoader.load(pageClass.getResource("/pages" + pageName));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    // Just in case it's a mouse event instead of a button click. This happens in pages like the login page.
-    public static void switchScene(String pageName, MouseEvent event, Class pageClass) {
+    public static void switchScene(String pageName, Event event, Class pageClass) {
         try {
             Parent root = FXMLLoader.load(pageClass.getResource("/pages" + pageName));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -138,14 +126,43 @@ public class TuitionFinderTools {
         return sb.toString();
     }
 
-    // This function takes in the completed classes, creates them in the database, then directs the user to the completion screen.
-    public static void completeSetup(Event event, Class<? extends SetupParentController> className, Account account,
+    // These 2 functions takes in the completed classes, creates them in the database, then directs the user to the completion screen.
+    public static void completeParentSetup(Event event, Class<? extends SetupParentController> className, Account account,
                                      com.ryanhuii.tuitionfinder.classes.Parent parent) {
         System.out.println("account setup for parent complete");
-    }
+        try {
+            FXMLLoader loader = new FXMLLoader(className.getResource("/pages/account/all-set.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
-    public static void completeSetup(Event event, Class<? extends SetupTutor2Controller> className, Account account,
+            AllSetController controller = loader.getController();
+            controller.transferParentDetails(parent);
+            controller.transferAccountDetails(account);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void completeTutorSetup(Event event, Class<? extends SetupTutor2Controller> className, Account account,
                                      Tutor tutor) {
         System.out.println("account setup for tutor complete");
+        try {
+            FXMLLoader loader = new FXMLLoader(className.getResource("/pages/account/all-set.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            AllSetController controller = loader.getController();
+            controller.transferTutorDetails(tutor);
+            controller.transferAccountDetails(account);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

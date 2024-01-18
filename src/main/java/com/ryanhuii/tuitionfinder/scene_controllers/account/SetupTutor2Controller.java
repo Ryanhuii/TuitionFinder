@@ -136,7 +136,7 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
         System.out.println(tutor.toString());
         System.out.println(account.toString());
 
-        TuitionFinderTools.completeSetup(event,getClass(),account,tutor);
+        TuitionFinderTools.completeTutorSetup(event,getClass(),account,tutor);
 
     }
     private void setNextButton() {
