@@ -1,8 +1,8 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
 import com.ryanhuii.tuitionfinder.model.Account;
-import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
-import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
+import com.ryanhuii.tuitionfinder.utils.AccountDetailsUpdater;
+import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,7 +43,7 @@ public class AccountDetailsController implements AccountDetailsUpdater {
     public void initialize() {
         // Removes the autofocus
         Platform.runLater(() -> vBoxFocus.requestFocus());
-        TuitionFinderTools.setUpBackButton(btnBack, btnCheese, getClass());
+        LoginUtils.setUpBackButton(btnBack, btnCheese, getClass());
 
         // if coming back from a page ahead, repopulate the fields
         Platform.runLater(() ->
@@ -58,7 +58,7 @@ public class AccountDetailsController implements AccountDetailsUpdater {
 
     @FXML
     void onBackClicked(ActionEvent event) {
-        TuitionFinderTools.switchScene("/account/create-new-account.fxml", event, getClass());
+        LoginUtils.switchScene("/account/create-new-account.fxml", event, getClass());
     }
 
     @FXML
@@ -71,7 +71,7 @@ public class AccountDetailsController implements AccountDetailsUpdater {
                 textFieldConfirmPassword.setStyle("-fx-border-color: #e80f0f; -fx-border-radius: 5");
             } else {
                 // account details verified. updating account class properties, generating uid and passing it on to next page
-                String uid = TuitionFinderTools.generateUID();
+                String uid = LoginUtils.generateUID();
                 account.setUid(uid);
                 account.setUsername(textFieldUsername.getText());
                 account.setEmail(textFieldEmail.getText());
@@ -80,10 +80,10 @@ public class AccountDetailsController implements AccountDetailsUpdater {
                 // depending on account type, send them to either page
                 switch (account.getAccountType()) {
                     case "Parent":
-                        TuitionFinderTools.nextSetupPage(event, getClass(), "/account/setup-parent.fxml", account);
+                        LoginUtils.nextSetupPage(event, getClass(), "/account/setup-parent.fxml", account);
                         break;
                     case "Tutor":
-                        TuitionFinderTools.nextSetupPage(event, getClass(), "/account/setup-tutor-1.fxml", account);
+                        LoginUtils.nextSetupPage(event, getClass(), "/account/setup-tutor-1.fxml", account);
                         break;
                 }
             }

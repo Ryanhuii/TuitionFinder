@@ -6,13 +6,13 @@ import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.service.AccountService;
 import com.ryanhuii.tuitionfinder.service.ParentService;
 import com.ryanhuii.tuitionfinder.service.TutorService;
-import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
-import com.ryanhuii.tuitionfinder.tools.ParentDetailsUpdater;
-import com.ryanhuii.tuitionfinder.tools.TutorDetailsUpdater;
+import com.ryanhuii.tuitionfinder.utils.AccountDetailsUpdater;
+import com.ryanhuii.tuitionfinder.utils.ParentDetailsUpdater;
+import com.ryanhuii.tuitionfinder.utils.LoginUtils;
+import com.ryanhuii.tuitionfinder.utils.TutorDetailsUpdater;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,6 @@ public class AllSetController implements AccountDetailsUpdater, ParentDetailsUpd
 
     public AllSetController() {
         System.out.println("AllSetController created!");
-        // todo: error - "this.accountService" is null
     }
 
     public void initialize() {
@@ -58,25 +57,34 @@ public class AllSetController implements AccountDetailsUpdater, ParentDetailsUpd
 
     @FXML
     void onLetsGo(ActionEvent event) {
-        // i'm thinking.....should i disable this button until i get a confirmation from my database that my
-        // account has been created within mongoDB?
-        System.out.println("Database under construction...");
-
+        // calls the login function. This must be defined here, not in LoginUtils, as the class services cannot be static.
+        login(event, getClass(), account.getUsername(), account.getPassword());
     }
 
-    @Override
-    public void transferAccountDetails(Account account) {
-        this.account = account;
-    }
-
-    @Override
-    public void transferParentDetails(Parent parent) {
-        this.parent = parent;
-    }
-
-    @Override
-    public void transferTutorDetails(Tutor tutor) {
-        this.tutor = tutor;
+    public void login(ActionEvent event, Class<? extends AllSetController> aClass, String username, String password) {
+        // login time.
+        Account account = accountService.loginAccount(username,password);
+        if (account != null) {
+            System.out.println("we found the account!");
+            System.out.println(account);
+            switch (account.getAccountType()) {
+                case "Parent":
+                    Parent parent = parentService.getParentByUid(account.getUid());
+                    System.out.println((parent != null) ? "We found the parent!" + parent: "Uh oh no parent found");
+                    LoginUtils.goToParentHomePage(event, getClass(),account,parent);
+                    break;
+                case "Tutor":
+                    Tutor tutor = tutorService.getTutorByUid(account.getUid());
+                    System.out.println((tutor != null) ? "We found the tutor!" + tutor: "Uh oh no tutor found");
+                    LoginUtils.goToTutorHomePage(event,getClass(),account,tutor);
+                    break;
+                default:
+                    System.out.println("how did account have no type??");
+                    break;
+            }
+        } else {
+            System.out.println("Account is null. We couldn't find it");
+        }
     }
 
     private void createParentAccount(Parent parent, Account account) {
@@ -95,5 +103,19 @@ public class AllSetController implements AccountDetailsUpdater, ParentDetailsUpd
         Tutor resultTutor = tutorService.createTutor(tutor);
 
         System.out.println((result == null || resultTutor == null) ? "oh dear the result is null" : "yay tutor account created!");
+    }
+    @Override
+    public void transferAccountDetails(Account account) {
+        this.account = account;
+    }
+
+    @Override
+    public void transferParentDetails(Parent parent) {
+        this.parent = parent;
+    }
+
+    @Override
+    public void transferTutorDetails(Tutor tutor) {
+        this.tutor = tutor;
     }
 }

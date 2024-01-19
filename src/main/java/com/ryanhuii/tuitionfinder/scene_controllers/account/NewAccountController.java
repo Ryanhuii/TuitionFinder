@@ -1,7 +1,7 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
 import com.ryanhuii.tuitionfinder.model.Account;
-import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
+import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,7 +61,7 @@ public class NewAccountController {
 //        btnCheese.setGraphic(copy);
 //        btnCheese.setVisible(false);
 
-        TuitionFinderTools.setUpBackButton(btnBack,btnCheese,getClass());
+        LoginUtils.setUpBackButton(btnBack,btnCheese,getClass());
     }
 
     @FXML
@@ -71,13 +71,13 @@ public class NewAccountController {
         // Pass on the type of account being created.
         Account account = new Account();
         account.setAccountType(selectedAccountType);
-        TuitionFinderTools.nextSetupPage(event, getClass(), "/account/account-details.fxml",account);
+        LoginUtils.nextSetupPage(event, getClass(), "/account/account-details.fxml",account);
     }
 
     @FXML
     void onBackClicked(ActionEvent event) {
         //System.out.println("going back to login page");
-        TuitionFinderTools.switchScene("/account/login.fxml", event, getClass());
+        LoginUtils.switchScene("/account/login.fxml", event, getClass());
     }
     @FXML
     void onParentSelected(MouseEvent event) {

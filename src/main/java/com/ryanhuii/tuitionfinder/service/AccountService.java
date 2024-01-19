@@ -10,6 +10,11 @@ public class AccountService {
     @Autowired
     private AccountRepository repository;
 
+    // Login
+    public Account loginAccount(String username, String password) {
+        return repository.findAccountByUsernameAndPassword(username,password);
+    }
+
     // Create
     public Account createAccount(Account account) {
         return repository.save(account);
@@ -19,10 +24,6 @@ public class AccountService {
     public Account getAccountByUid(String uid) {
         return repository.findById(uid).get();
     }
-
-//    public void verifyExistence() {
-//        System.out.println("This Account Service Exists");
-//    }
 
     // Update - I doubt that I would touch this but I'll just add it in here
     // Same for delete account functionality.

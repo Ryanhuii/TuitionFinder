@@ -1,4 +1,4 @@
-package com.ryanhuii.tuitionfinder.tools;
+package com.ryanhuii.tuitionfinder.utils;
 
 import com.ryanhuii.tuitionfinder.model.Tutor;
 

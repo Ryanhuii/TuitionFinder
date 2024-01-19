@@ -1,5 +1,5 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.account;
-import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
+import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,6 +63,6 @@ public class LoginController {
     @FXML
     void createNewAccount(MouseEvent event) {
         //System.out.println("creating new account");
-        TuitionFinderTools.switchScene("/account/create-new-account.fxml", event, getClass());
+        LoginUtils.switchScene("/account/create-new-account.fxml", event, getClass());
     }
 }

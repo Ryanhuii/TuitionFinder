@@ -1,4 +1,4 @@
-package com.ryanhuii.tuitionfinder.tools;
+package com.ryanhuii.tuitionfinder.utils;
 
 import com.ryanhuii.tuitionfinder.model.Account;
 import com.ryanhuii.tuitionfinder.model.Tutor;
@@ -20,27 +20,39 @@ import org.springframework.context.ApplicationContext;
 import java.io.IOException;
 import java.security.SecureRandom;
 
-public class TuitionFinderTools {
-
+public class LoginUtils {
     private static ApplicationContext applicationContext;
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final int STRING_LENGTH = 10;
 
-    // pray this works
+    // The glue that holds my entire application together.
     public static void setApplicationContext(ApplicationContext context) {
-        TuitionFinderTools.applicationContext = context;
+        LoginUtils.applicationContext = context;
     }
 
+
+    public static void goToParentHomePage(Event event, Class pageClass, Account account, com.ryanhuii.tuitionfinder.model.Parent parent) {
+        // Go to Parent home page. I plan to use a new Tools Class for managing parent-account app interactions
+        ParentUtils.setApplicationContext(applicationContext);
+        // all the page controllers will display data based on the uid of the parent or account. It is managed top-level by ParentUtils for central safekeeping.
+        ParentUtils.setAccount(account);
+        ParentUtils.setParent(parent);
+        // todo: very first page for parent
+        switchScene("/pages/account/parent/find-tutors",event,pageClass);
+    }
+
+    public static void goToTutorHomePage(Event event, Class pageClass, Account account, Tutor tutor) {
+        // Go to Tutor home page. I plan to use a new Tools Class for managing tutor-account app interactions
+    }
+
+    // todo: should I shift this somewhere? Will it be used for all Login, Parent and Tutor app flows?
     public static void switchScene(String pageName, Event event, Class pageClass) {
         try {
-            // Parent root = FXMLLoader.load(pageClass.getResource("/pages" + pageName));
-
             FXMLLoader loader = new FXMLLoader(pageClass.getResource("/pages" + pageName));
 
             loader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
 
             Parent root = loader.load();
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -184,4 +196,5 @@ public class TuitionFinderTools {
             throw new RuntimeException(e);
         }
     }
+
 }

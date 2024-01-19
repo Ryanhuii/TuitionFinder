@@ -2,9 +2,9 @@ package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
 import com.ryanhuii.tuitionfinder.model.Account;
 import com.ryanhuii.tuitionfinder.model.Tutor;
-import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
-import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
-import com.ryanhuii.tuitionfinder.tools.TutorDetailsUpdater;
+import com.ryanhuii.tuitionfinder.utils.AccountDetailsUpdater;
+import com.ryanhuii.tuitionfinder.utils.LoginUtils;
+import com.ryanhuii.tuitionfinder.utils.TutorDetailsUpdater;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -43,7 +43,7 @@ public class SetupTutor1Controller implements AccountDetailsUpdater , TutorDetai
     public void initialize() {
         // Removes the autofocus
         Platform.runLater( () -> vBoxFocus.requestFocus() );
-        TuitionFinderTools.setUpBackButton(btnBack,btnCheese,getClass());
+        LoginUtils.setUpBackButton(btnBack,btnCheese,getClass());
 
         // setup my combo box for gender
         choiceGender.setItems(FXCollections.observableArrayList(genders));
@@ -112,7 +112,7 @@ public class SetupTutor1Controller implements AccountDetailsUpdater , TutorDetai
     @FXML
     void onBackClicked(ActionEvent event) {
         // Proper UX design - saving previous data so user doesn't have to start all over again
-        TuitionFinderTools.nextSetupPage(event,getClass(),"/account/account-details.fxml",account);
+        LoginUtils.nextSetupPage(event,getClass(),"/account/account-details.fxml",account);
     }
 
     @FXML
@@ -125,7 +125,7 @@ public class SetupTutor1Controller implements AccountDetailsUpdater , TutorDetai
         tutor.setGender(selectedGender);
         tutor.setAge(Integer.parseInt(txtAge.getText()));
 //        System.out.println(tutor.toString());
-        TuitionFinderTools.nextTutorSetupPage(event,getClass(),account,tutor);
+        LoginUtils.nextTutorSetupPage(event,getClass(),account,tutor);
     }
 
     @Override

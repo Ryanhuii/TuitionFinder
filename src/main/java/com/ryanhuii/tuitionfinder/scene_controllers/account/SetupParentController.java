@@ -2,8 +2,8 @@ package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
 import com.ryanhuii.tuitionfinder.model.Account;
 import com.ryanhuii.tuitionfinder.model.Parent;
-import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
-import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
+import com.ryanhuii.tuitionfinder.utils.AccountDetailsUpdater;
+import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,7 +44,7 @@ public class SetupParentController implements AccountDetailsUpdater {
     public void initialize() {
         // Removes the autofocus
         Platform.runLater( () -> vBoxFocus.requestFocus() );
-        TuitionFinderTools.setUpBackButton(btnBack,btnCheese,getClass());
+        LoginUtils.setUpBackButton(btnBack,btnCheese,getClass());
     }
     @FXML
     void checkFields(KeyEvent event) {
@@ -55,14 +55,14 @@ public class SetupParentController implements AccountDetailsUpdater {
     @FXML
     void onBackClicked(ActionEvent event) {
         // Proper UX design - saving previous data so user doesn't have to start all over again
-        TuitionFinderTools.nextSetupPage(event,getClass(),"/account/account-details.fxml",account);
+        LoginUtils.nextSetupPage(event,getClass(),"/account/account-details.fxml",account);
     }
 
     @FXML
     void onNextClicked(MouseEvent event) {
         if (!btnNext.isDisabled()) {
             Parent parentAccount = createNewParentAccount(account.getUid(),txtPostalCode.getText(),txtStreetName.getText(),txtBlockNumber.getText());
-            TuitionFinderTools.completeParentSetup(event,getClass(),account,parentAccount);
+            LoginUtils.completeParentSetup(event,getClass(),account,parentAccount);
         } else {
             System.out.println("this shouldn't happen!");
         }

@@ -2,9 +2,9 @@ package com.ryanhuii.tuitionfinder.scene_controllers.account;
 
 import com.ryanhuii.tuitionfinder.model.Account;
 import com.ryanhuii.tuitionfinder.model.Tutor;
-import com.ryanhuii.tuitionfinder.tools.AccountDetailsUpdater;
-import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
-import com.ryanhuii.tuitionfinder.tools.TutorDetailsUpdater;
+import com.ryanhuii.tuitionfinder.utils.AccountDetailsUpdater;
+import com.ryanhuii.tuitionfinder.utils.LoginUtils;
+import com.ryanhuii.tuitionfinder.utils.TutorDetailsUpdater;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -71,7 +71,7 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
     public void initialize() {
         // Removes the autofocus
         Platform.runLater( () -> vBoxFocus.requestFocus() );
-        TuitionFinderTools.setUpBackButton(btnBack,btnCheese,getClass());
+        LoginUtils.setUpBackButton(btnBack,btnCheese,getClass());
 
         // setup my combo box for gender
         choiceTutorType.setItems(FXCollections.observableArrayList(tutorTypes));
@@ -125,7 +125,7 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
     @FXML
     void onBackClicked(ActionEvent event) {
         // Proper UX design - saving previous data so user doesn't have to start all over again
-        TuitionFinderTools.previousTutorSetupPage(event,getClass(),account,tutor);
+        LoginUtils.previousTutorSetupPage(event,getClass(),account,tutor);
     }
 
     @FXML
@@ -139,7 +139,7 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
         //System.out.println(tutor.toString());
         //System.out.println(account.toString());
 
-        TuitionFinderTools.completeTutorSetup(event,getClass(),account,tutor);
+        LoginUtils.completeTutorSetup(event,getClass(),account,tutor);
 
     }
     private void setNextButton() {
