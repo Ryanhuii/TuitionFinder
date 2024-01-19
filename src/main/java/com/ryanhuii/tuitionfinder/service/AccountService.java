@@ -20,9 +20,9 @@ public class AccountService {
         return repository.findById(uid).get();
     }
 
-    public void verifyExistence() {
-        System.out.println("This Account Service Exists");
-    }
+//    public void verifyExistence() {
+//        System.out.println("This Account Service Exists");
+//    }
 
     // Update - I doubt that I would touch this but I'll just add it in here
     // Same for delete account functionality.

@@ -7,7 +7,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "accounts")
+// The standard I'm setting for collection names is just the caps version of the class name, and in plural form. I don't think it would cause any issues Java-wise
+@Document(collection = "Accounts")
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
 public class Account {
 

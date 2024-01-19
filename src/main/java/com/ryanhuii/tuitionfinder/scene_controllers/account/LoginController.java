@@ -62,16 +62,7 @@ public class LoginController {
 
     @FXML
     void createNewAccount(MouseEvent event) {
-        System.out.println("creating new account");
+        //System.out.println("creating new account");
         TuitionFinderTools.switchScene("/account/create-new-account.fxml", event, getClass());
-//        try {
-//            root = FXMLLoader.load(createNewAccountResource.getURL());
-//            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//            scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 }

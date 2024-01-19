@@ -1,6 +1,7 @@
 package com.ryanhuii.tuitionfinder;
 
 import com.ryanhuii.tuitionfinder.TuitionFinderApplication.StageReadyEvent;
+import com.ryanhuii.tuitionfinder.tools.TuitionFinderTools;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,6 +34,10 @@ public class StageInitializer implements ApplicationListener<StageReadyEvent> {
             // this line lets me use the beans within the JavaFX application
             fxmlLoader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
             Parent parent = fxmlLoader.load();
+
+            // THIS WORKS - passing this application context into the Tools class,
+            // since the tools class manages the utilities for so many classes, and is responsible for page setup
+            TuitionFinderTools.setApplicationContext(applicationContext);
 
             Stage stage = event.getStage();
             // wireframe dimensions are 1440x1024, although I've realised that it could be 1280,800

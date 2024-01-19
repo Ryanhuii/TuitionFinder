@@ -15,17 +15,32 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
 import java.security.SecureRandom;
 
 public class TuitionFinderTools {
+
+    private static ApplicationContext applicationContext;
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final int STRING_LENGTH = 10;
 
+    // pray this works
+    public static void setApplicationContext(ApplicationContext context) {
+        TuitionFinderTools.applicationContext = context;
+    }
+
     public static void switchScene(String pageName, Event event, Class pageClass) {
         try {
-            Parent root = FXMLLoader.load(pageClass.getResource("/pages" + pageName));
+            // Parent root = FXMLLoader.load(pageClass.getResource("/pages" + pageName));
+
+            FXMLLoader loader = new FXMLLoader(pageClass.getResource("/pages" + pageName));
+
+            loader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
+
+            Parent root = loader.load();
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -130,6 +145,9 @@ public class TuitionFinderTools {
         System.out.println("account setup for parent complete");
         try {
             FXMLLoader loader = new FXMLLoader(className.getResource("/pages/account/all-set.fxml"));
+
+            loader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
+
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -149,7 +167,9 @@ public class TuitionFinderTools {
         System.out.println("account setup for tutor complete");
         try {
             FXMLLoader loader = new FXMLLoader(className.getResource("/pages/account/all-set.fxml"));
-            //loader.setControllerFactory(applicationContext::getBean);
+
+            loader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
+
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
