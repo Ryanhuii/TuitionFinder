@@ -15,6 +15,11 @@ public class AccountService {
         return repository.findAccountByUsernameAndPassword(username,password);
     }
 
+    // Check if account username exists.
+    public Account checkIfUsernameExists(String username) {
+        return repository.findAccountByUsername(username);
+    }
+
     // Create
     public Account createAccount(Account account) {
         return repository.save(account);

@@ -80,7 +80,7 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 selectedTutorType = tutorTypes[t1.intValue()];
-                System.out.println(selectedTutorType);
+                //System.out.println(selectedTutorType);
                 setNextButton();
             }
         });
@@ -106,7 +106,7 @@ public class SetupTutor2Controller implements AccountDetailsUpdater , TutorDetai
         comboBoxSubjects.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
             @Override
             public void onChanged(Change<? extends String> change) {
-                System.out.println(comboBoxSubjects.getCheckModel().getCheckedItems());
+                //System.out.println(comboBoxSubjects.getCheckModel().getCheckedItems());
                 selectedSubjects = comboBoxSubjects.getCheckModel().getCheckedItems();
                 setNextButton();
             }

@@ -43,25 +43,25 @@
                   <Font name="NiveauGroteskMedium" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txt_username" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="400.0" prefWidth="400.0">
+            <TextField fx:id="txt_username" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="400.0" onKeyTyped="#onKeyTyped" prefWidth="400.0">
                <font>
                   <Font name="Meiryo UI" size="12.0" />
                </font>
             </TextField>
-            <Label fx:id="error_username" text="User does not exist" textFill="#ff5e5e" visible="false" />
+            <Label fx:id="error_username" text="Username does not exist" textFill="#ff5e5e" visible="false" />
             <Label text="Password">
                <font>
                   <Font name="NiveauGroteskMedium" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txt_password" maxWidth="-Infinity" minWidth="400.0" prefWidth="400.0">
+            <TextField fx:id="txt_password" maxWidth="-Infinity" minWidth="400.0" onKeyTyped="#onKeyTyped" prefWidth="400.0">
                <font>
                   <Font name="Meiryo UI" size="12.0" />
                </font>
             </TextField>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0">
                <children>
-                  <Label fx:id="error_password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Invalid password entered" textFill="#ff5e5e" visible="false" />
+                  <Label fx:id="error_password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Password is invalid" textFill="#ff5e5e" visible="false" />
                   <Label fx:id="txt_new_account" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#createNewAccount" prefWidth="200.0" text="Create new account" textFill="#757575" underline="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -70,7 +70,7 @@
             </HBox>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="400.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0">
                <children>
-                  <Button fx:id="btn_login" mnemonicParsing="false" onAction="#onLogin" text="Login" textAlignment="CENTER">
+                  <Button fx:id="btn_login" disable="true" mnemonicParsing="false" onAction="#onLogin" text="Login" textAlignment="CENTER">
                      <font>
                         <Font name="Meiryo UI Bold" size="12.0" />
                      </font>

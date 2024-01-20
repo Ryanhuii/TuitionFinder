@@ -30,7 +30,10 @@ public class LoginUtils {
         LoginUtils.applicationContext = context;
     }
 
-
+    public static void logOut(Event event, Class pageClass) {
+        // log out of Tuition Finder application
+        switchScene("/account/login.fxml",event,pageClass);
+    }
     public static void goToParentHomePage(Event event, Class pageClass, Account account, com.ryanhuii.tuitionfinder.model.Parent parent) {
         // Go to Parent home page. I plan to use a new Tools Class for managing parent-account app interactions
         ParentUtils.setApplicationContext(applicationContext);
@@ -38,11 +41,17 @@ public class LoginUtils {
         ParentUtils.setAccount(account);
         ParentUtils.setParent(parent);
         // todo: very first page for parent
-        switchScene("/pages/account/parent/find-tutors",event,pageClass);
+        switchScene("/parent/find-tutors.fxml",event,pageClass);
     }
 
     public static void goToTutorHomePage(Event event, Class pageClass, Account account, Tutor tutor) {
         // Go to Tutor home page. I plan to use a new Tools Class for managing tutor-account app interactions
+        // I think I'll work on the tutor side only after a bunch of parent-side stuff is done.
+        TutorUtils.setApplicationContext(applicationContext);
+        // all the page controllers will display data based on the uid of the parent or account. It is managed top-level by ParentUtils for central safekeeping.
+        TutorUtils.setAccount(account);
+        TutorUtils.setTutor(tutor);
+        switchScene("/tutor/tutor-template.fxml",event,pageClass);
     }
 
     // todo: should I shift this somewhere? Will it be used for all Login, Parent and Tutor app flows?

@@ -14,7 +14,7 @@
          <children>
             <HBox alignment="CENTER" prefWidth="200.0" spacing="40.0">
                <children>
-                  <Label text="Find Tutors">
+                  <Label text="Dashboard">
                      <font>
                         <Font name="NiveauGroteskBold" size="13.0" />
                      </font>
@@ -40,7 +40,7 @@
                               <Font name="NiveauGroteskBold" size="32.0" />
                            </font>
                         </Label>
-                        <Label text=" For Parents">
+                        <Label text=" For Tutors">
                            <font>
                               <Font name="NiveauGroteskBold" size="16.0" />
                            </font>
@@ -68,7 +68,7 @@
       </HBox>
       <HBox alignment="CENTER">
          <children>
-            <Label text="Header components go here">
+            <Label text="Hi you are tutor">
                <font>
                   <Font size="36.0" />
                </font>
