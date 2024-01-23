@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -48,18 +50,19 @@ public class FindTutorsController {
     public void initialize() {
         Platform.runLater( () -> vBoxFocus.requestFocus());
 
+        // get array list of tutors
         tutors.clear();
         tutors = tutorService.getAllTutors();
 
         System.out.println("I found " + tutors.size() + " tutors");
 
-        // Set equal width constraints for all columns
+        // Set equal width constraints for all columns in the GridPane
         for (int i = 0; i < 4; i++) {
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(25); // 25% width for each column
             tutorGrid.getColumnConstraints().add(column);
         }
-
+        // Populate the GridPane with tutors
         int column = 0, row = 1;
         try {
             for (Tutor tutor : tutors) {
@@ -77,7 +80,7 @@ public class FindTutorsController {
                 // Set both row and column margins for the label
                 Insets margins = new Insets(10); // You can adjust the values as needed
                 GridPane.setMargin(cardBox, margins);
-
+                // Add the card to the grid
                 tutorGrid.add(cardBox,column++,row);
             }
         } catch (IOException e) {

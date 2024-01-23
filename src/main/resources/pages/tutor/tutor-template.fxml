@@ -15,7 +15,7 @@
          <children>
             <HBox alignment="CENTER" prefWidth="300.0" spacing="40.0">
                <children>
-                  <Label text="Dashboard">
+                  <Label fx:id="btnDashboard" onMouseClicked="#gotoDashBoard" text="Dashboard">
                      <font>
                         <Font name="NiveauGroteskBold" size="18.0" />
                      </font>
@@ -23,7 +23,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label text="Assignments">
+                  <Label fx:id="btnAssignments" onMouseClicked="#gotoAssignments" text="Assignments">
                      <font>
                         <Font name="NiveauGroteskBold" size="18.0" />
                      </font>
@@ -61,7 +61,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefWidth="300.0">
                <children>
-                  <Label alignment="CENTER_RIGHT" text="Logout">
+                  <Label fx:id="btnLogout" alignment="CENTER_RIGHT" onMouseClicked="#onLogout" text="Logout">
                      <font>
                         <Font name="NiveauGroteskBold" size="18.0" />
                      </font>
