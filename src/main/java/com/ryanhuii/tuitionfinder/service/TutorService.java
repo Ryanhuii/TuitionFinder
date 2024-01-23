@@ -7,6 +7,8 @@ import com.ryanhuii.tuitionfinder.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TutorService {
     @Autowired
@@ -20,6 +22,10 @@ public class TutorService {
     // Read
     public Tutor getTutorByUid(String uid) {
         return repository.findById(uid).get();
+    }
+
+    public List<Tutor> getAllTutors() {
+        return repository.findAll();
     }
 
     public void verifyExistence() {

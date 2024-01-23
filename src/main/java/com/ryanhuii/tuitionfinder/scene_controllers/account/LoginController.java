@@ -85,7 +85,7 @@ public class LoginController {
             Account accountError = accountService.checkIfUsernameExists(username);
             if (accountError != null) {
                 if (!accountError.getPassword().equals(password)) {
-                    //System.out.println("Passwords do not match!");
+                    System.out.println("Password is wrong. The correct password is: " + accountError.getPassword());
                     error_username.setVisible(false);
                     error_password.setVisible(true);
                 } else {
