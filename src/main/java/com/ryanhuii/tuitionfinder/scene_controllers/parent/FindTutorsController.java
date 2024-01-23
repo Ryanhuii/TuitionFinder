@@ -3,6 +3,7 @@ package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.service.TutorService;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;
+import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -86,6 +87,11 @@ public class FindTutorsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void onBtnAssignmentsClick(MouseEvent event) {
+        ParentUtils.switchScene("my-assignments.fxml",event,getClass());
     }
 
     @FXML
