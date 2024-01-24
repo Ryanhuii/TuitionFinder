@@ -21,16 +21,36 @@ public class Assignment {
 
     String subject;
     String level; // primary 4, secondary 1 etc.
+
     int frequency; // XX days a week
-    String duration;
+    int duration; // assignment lasts for XX months
+
     String gender;
     String rates; // lists out the rates that the parent is willing to pay
-    Map<String, Boolean> availability;
+    List<String> availability;
     String parentNote;
 
     List<String> assignmentApplications; // it's just a list of application IDs.
     // properties set by tutor when confirmed
     String tutorUID;
     int rate; // the rate payable to the tutor
-    Map<String, Boolean> lessonSchedule; // will be set by the tutor ONCE CONFIRMED
+
+    // will be set by the tutor ONCE CONFIRMED
+    // it's probably just the uhm, same as the availability but ya know,
+    // I leave the option to play around with this. If I have the time.
+    // I probably don't.
+    List<String> lessonSchedule;
+
+    public String getFormDetails() {
+        return "Assignment{" +
+                "subject='" + subject + '\'' +
+                ", level='" + level + '\'' +
+                ", frequency=" + frequency +
+                ", duration=" + duration +
+                ", gender='" + gender + '\'' +
+                ", rates='" + rates + '\'' +
+                ", availability=" + availability +
+                ", parentNote='" + parentNote + '\'' +
+                '}';
+    }
 }

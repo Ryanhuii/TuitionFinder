@@ -8,13 +8,20 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import org.controlsfx.control.CheckComboBox;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class AddAssignmentController {
@@ -24,7 +31,6 @@ public class AddAssignmentController {
     @FXML
     private ComboBox<String> comboBoxGender;
     String[] genders = {"Male", "Female", "Other"};
-    String selectedGender = "";
 
     @FXML
     private ComboBox<String> comboBoxSubject;
@@ -43,7 +49,6 @@ public class AddAssignmentController {
             "History",
             "Geography",
             "Social Studies"};
-    String selectedSubject = "";
 
     @FXML
     private HBox hBoxSpinners;
@@ -60,19 +65,32 @@ public class AddAssignmentController {
     // page setup stuff
     @FXML
     private Label btnAssignments;
-
     @FXML
     private Label btnFindTutors;
-
     @FXML
     private Label btnLogout;
-
     @FXML
     private VBox vBoxFocus;
+    @FXML
+    private HBox hBoxForComboBox;
+    @FXML
+    private Button btnSubmit;
     // end of page setup stuff
+
+    // my variables for the input form
+    String selectedSubject = "";
+    String level = "";
+    int frequency = 1, duration = 1;
+    String selectedGender = "";
+    String rates = "";
+    List<String> availability = new ArrayList<>(); // todo: set this up and add to refreshBtn
+    String parentNote = "";
 
     public void initialize() {
         Platform.runLater( () -> vBoxFocus.requestFocus());
+
+        // disable the submit button initially
+        btnSubmit.setDisable(true);
 
         // setup my combo box for assignment subject
         comboBoxSubject.setItems(FXCollections.observableArrayList(subjects));
@@ -80,8 +98,9 @@ public class AddAssignmentController {
         comboBoxSubject.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                // System.out.println(selectedSubject);
                 selectedSubject = subjects[t1.intValue()];
-                System.out.println(selectedSubject);
+                refreshBtnEnable();
             }
         });
 
@@ -91,8 +110,9 @@ public class AddAssignmentController {
         comboBoxGender.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                // System.out.println(selectedGender);
                 selectedGender = genders[t1.intValue()];
-                System.out.println(selectedGender);
+                refreshBtnEnable();
             }
         });
 
@@ -108,11 +128,10 @@ public class AddAssignmentController {
             @Override
             public void changed(ObservableValue<? extends Integer> observableValue, Integer integer, Integer t1) {
                 //System.out.println("days is " + t1);
+                frequency = t1;
             }
         });
-
         var daysText = new Text("days a week, for");
-
         var durationSpinner = new Spinner<Integer>(1, 12, 1);
         IntegerStringConverter.createFor(durationSpinner);
         durationSpinner.setEditable(true);
@@ -121,13 +140,87 @@ public class AddAssignmentController {
             @Override
             public void changed(ObservableValue<? extends Integer> observableValue, Integer integer, Integer t1) {
                 //System.out.println("duration is " + t1);
+                duration = t1;
             }
         });
-
         var durationText = new Text("months.");
-
         hBoxSpinners.getChildren().addAll(daysSpinner,daysText,durationSpinner,durationText);
 
+        // create a CheckComboBox for days available
+        CheckComboBox<String> availabilityComboBox = new CheckComboBox<>();
+        availabilityComboBox.setMinWidth(150);
+        availabilityComboBox.setPrefWidth(150);
+        availabilityComboBox.setMaxWidth(150);
+        availabilityComboBox.setTitle("Availability");
+        availabilityComboBox.getItems().setAll("Monday","Tuesday","Wednesday",
+                "Thursday","Friday","Saturday","Sunday");
+        availabilityComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+            @Override
+            public void onChanged(Change<? extends String> change) {
+                availability = availabilityComboBox.getCheckModel().getCheckedItems();
+                refreshBtnEnable();
+
+                if (!availability.isEmpty()) availabilityComboBox.setTitle("Availability (" + availability.size() + ")");
+                else availabilityComboBox.setTitle("Availability");
+            }
+        });
+        hBoxForComboBox.getChildren().add(availabilityComboBox);
+
+    } // end of initialize()
+
+    @FXML
+    void onSubmit(ActionEvent event) {
+        // Fill in the fields of the assignment object
+        assignment.setSubject(selectedSubject);
+        assignment.setLevel(level);
+        assignment.setFrequency(frequency);
+        assignment.setDuration(duration);
+        assignment.setGender(selectedGender);
+        assignment.setRates(rates);
+        assignment.setAvailability(availability);
+        assignment.setParentNote(parentNote);
+
+        System.out.println(assignment.getFormDetails());
+
+        // The rest of the fields need to be filled in with default values
+        // Also generate a new uid for this assignment
+        assignment.setAssignment_id(LoginUtils.generateUID());
+        assignment.setStatus("Pending");
+        assignment.setAssignmentApplications(new ArrayList<>());
+        assignment.setTutorUID("");
+        assignment.setRate(0);
+
+        // Submit the Assignment, i.e. upload it to the database
+
+        // maybe display a UI prompt to say hey it's successful
+    }
+
+    @FXML
+    void onParentNoteChange(KeyEvent event) {
+        parentNote = txtParentNote.getText();
+        refreshBtnEnable();
+    }
+
+    @FXML
+    void onTxtLevelChange(KeyEvent event) {
+        level = txtLevel.getText();
+        refreshBtnEnable();
+    }
+
+    @FXML
+    void onTxtRatesChange(KeyEvent event) {
+        rates = txtRates.getText();
+        refreshBtnEnable();
+    }
+
+    private void refreshBtnEnable() {
+        btnSubmit.setDisable(selectedSubject.isBlank()
+                || level.isBlank()
+                || selectedGender.isBlank()
+                || rates.isBlank()
+                || parentNote.isBlank()
+                || availability.isEmpty()
+        );
     }
 
     @FXML
