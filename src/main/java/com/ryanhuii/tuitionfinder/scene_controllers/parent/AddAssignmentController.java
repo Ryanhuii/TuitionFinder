@@ -59,10 +59,23 @@ public class AddAssignmentController {
             "Social Studies"};
 
     @FXML
-    private HBox hBoxSpinners;
+    private ComboBox<String> comboBoxLevel;
+    String[] levels = {
+            "Primary 1",
+            "Primary 2",
+            "Primary 3",
+            "Primary 4",
+            "Primary 5",
+            "Primary 6",
+            "Secondary 1",
+            "Secondary 2",
+            "Secondary 3",
+            "Secondary 4",
+            "Secondary 5",
+            "Polytechnic"};
 
     @FXML
-    private TextField txtLevel;
+    private HBox hBoxSpinners;
 
     @FXML
     private TextArea txtParentNote;
@@ -87,7 +100,7 @@ public class AddAssignmentController {
 
     // my variables for the input form
     String selectedSubject = "";
-    String level = "";
+    String selectedLevel = "";
     int frequency = 1, duration = 1;
     String selectedGender = "";
     String rates = "";
@@ -112,7 +125,20 @@ public class AddAssignmentController {
             }
         });
 
+        // combo box for level
+        comboBoxLevel.setItems(FXCollections.observableArrayList(levels));
+        comboBoxLevel.setValue(null);
+        comboBoxLevel.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                // System.out.println(selectedSubject);
+                selectedLevel = levels[t1.intValue()];
+                refreshBtnEnable();
+            }
+        });
+
         // setup my combo box for gender
+        comboBoxGender.setPromptText("Gender of child");
         comboBoxGender.setItems(FXCollections.observableArrayList(genders));
         comboBoxGender.setValue(null);
         comboBoxGender.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -180,7 +206,7 @@ public class AddAssignmentController {
     void onSubmit(ActionEvent event) {
         // Fill in the fields of the assignment object
         assignment.setSubject(selectedSubject);
-        assignment.setLevel(level);
+        assignment.setLevel(selectedLevel);
         assignment.setFrequency(frequency);
         assignment.setDuration(duration);
         assignment.setGender(selectedGender);
@@ -219,12 +245,6 @@ public class AddAssignmentController {
     }
 
     @FXML
-    void onTxtLevelChange(KeyEvent event) {
-        level = txtLevel.getText();
-        refreshBtnEnable();
-    }
-
-    @FXML
     void onTxtRatesChange(KeyEvent event) {
         rates = txtRates.getText();
         refreshBtnEnable();
@@ -232,7 +252,7 @@ public class AddAssignmentController {
 
     private void refreshBtnEnable() {
         btnSubmit.setDisable(selectedSubject.isBlank()
-                || level.isBlank()
+                || selectedLevel.isBlank()
                 || selectedGender.isBlank()
                 || rates.isBlank()
                 || parentNote.isBlank()
