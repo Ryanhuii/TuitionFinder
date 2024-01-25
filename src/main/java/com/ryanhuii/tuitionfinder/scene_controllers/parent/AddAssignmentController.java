@@ -207,6 +207,9 @@ public class AddAssignmentController {
         if (parentResult != null) System.out.println("Parent successfully updated!");
 
         // maybe display a UI prompt to say hey it's successful
+
+        // redirect me back to "My Assignments" page
+        ParentUtils.switchScene("my-assignments.fxml",event,getClass());
     }
 
     @FXML
