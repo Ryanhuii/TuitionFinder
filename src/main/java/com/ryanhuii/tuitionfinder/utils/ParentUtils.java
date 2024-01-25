@@ -4,6 +4,7 @@ import com.ryanhuii.tuitionfinder.model.Account;
 import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.model.Parent;
 import com.ryanhuii.tuitionfinder.model.Tutor;
+import com.ryanhuii.tuitionfinder.scene_controllers.parent.MyAssignmentsController;
 import com.ryanhuii.tuitionfinder.scene_controllers.parent.ViewTutorController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,6 @@ import lombok.Setter;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
-import java.util.List;
 
 public class ParentUtils {
     @Getter
@@ -24,6 +24,8 @@ public class ParentUtils {
     private static Account account;
     @Getter
     private static Parent parent;
+    @Getter @Setter
+    private static Event tempEvent;
 
     // general switch scene function
     public static void switchScene(String pageName, Event event, Class pageClass) {
@@ -73,5 +75,32 @@ public class ParentUtils {
 
     public static void setParent(Parent parent) {
         ParentUtils.parent = parent;
+        if (parent != null) System.out.println("Parent successfully updated!");
+        else System.out.println("Something went wrong, and parent is now null");
+    }
+
+    public static void deleteAssignment(Event event, Class pageClass, Assignment assignment) {
+        // basically refresh the assignment list page, pass the specific assignment to be deleted and call the delete function.
+        // MyAssignmentsController will then use its service objects to delete that assignment from Parent and Assignment collections
+        // It will then refresh itself...
+        try {
+            FXMLLoader loader = new FXMLLoader(pageClass.getResource("/pages/parent/" + "my-assignments.fxml"));
+
+            loader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
+
+            javafx.scene.Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            ParentUtils.setTempEvent(event); // oh my god
+
+            MyAssignmentsController controller = loader.getController();
+            controller.deleteAssignment(assignment);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

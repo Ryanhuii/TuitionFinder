@@ -1,7 +1,9 @@
 package com.ryanhuii.tuitionfinder.service;
 
+import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.model.Parent;
 import com.ryanhuii.tuitionfinder.repository.ParentRepository;
+import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,16 @@ public class ParentService {
 
     private Parent updateParent(Parent p) {
         return repository.save(p);
+    }
+
+    public Parent deleteAssignmentFromAssignmentList(Assignment assignment) {
+        System.out.println("Deleting assignment from parent...");
+
+        Parent newParent = ParentUtils.getParent();
+        List<String> newList = newParent.getAssignmentList();
+        newList.remove(assignment.getAssignment_id());
+        newParent.setAssignmentList(newList);
+
+        return updateParent(newParent);
     }
 }

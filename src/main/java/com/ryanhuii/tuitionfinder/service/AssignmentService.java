@@ -31,4 +31,10 @@ public class AssignmentService {
 
         return objectList;
     }
+
+    public void deleteAssignment(Assignment assignment) {
+        System.out.println("deleting assignment: " + assignment.getParentNote());
+        repository.delete(assignment);
+        System.out.println("Assignment deleted form database");
+    }
 }

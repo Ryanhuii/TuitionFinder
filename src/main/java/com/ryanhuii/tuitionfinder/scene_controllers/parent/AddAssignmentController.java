@@ -202,9 +202,9 @@ public class AddAssignmentController {
         Assignment result = assignmentService.createAssignment(assignment);
         if (result != null) System.out.println("Assignment successfully created!");
 
-        // Additionally, add this assignment to the parent list via service database function
-        Parent parentResult = parentService.addAssignmentToParentAssignmentList(assignment.getAssignment_id(), ParentUtils.getParent());
-        if (parentResult != null) System.out.println("Parent successfully updated!");
+        // Additionally, add this assignment to the parent list via service database function, and update ParentUtils object.
+        // Parent parentResult = parentService.addAssignmentToParentAssignmentList(assignment.getAssignment_id(), ParentUtils.getParent());
+        ParentUtils.setParent(parentService.addAssignmentToParentAssignmentList(assignment.getAssignment_id(), ParentUtils.getParent()));
 
         // maybe display a UI prompt to say hey it's successful
 

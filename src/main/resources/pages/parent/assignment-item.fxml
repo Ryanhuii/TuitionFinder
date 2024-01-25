@@ -9,14 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" style="-fx-background-color: #EFF2ED;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" style="-fx-background-color: #EFF2ED;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.scene_controllers.parent.AssignmentItemController">
    <children>
       <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <children>
             <HBox alignment="CENTER_LEFT" prefWidth="870.0" spacing="10.0">
                <children>
-                  <Label text="Math Tuition">
+                  <Label fx:id="txtSubject" text="Math Tuition">
                      <font>
                         <Font name="NiveauGroteskMedium" size="36.0" />
                      </font>
@@ -26,7 +25,7 @@
                   </Label>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #EEC7B1; -fx-background-radius: 4;">
                      <children>
-                        <Label text="Pending">
+                        <Label fx:id="txtStatus" text="Pending">
                            <font>
                               <Font name="Inter Medium" size="14.0" />
                            </font>
@@ -36,7 +35,7 @@
                         <Insets bottom="2.0" left="6.0" right="6.0" top="2.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #ECC6DF; -fx-background-radius: 4;">
+                  <HBox fx:id="hBoxIncomingRequest" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #ECC6DF; -fx-background-radius: 4;">
                      <children>
                         <Label text="Incoming tutor request(s)">
                            <font>
@@ -48,12 +47,13 @@
                         <Insets bottom="2.0" left="6.0" right="6.0" top="2.0" />
                      </padding>
                   </HBox>
+                  <Label fx:id="txtHiddenAssignmentId" text="Label" visible="false" />
                </children>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </HBox>
-            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btnDelete" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#onDeleteClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/delete-icon.png" />
                </image>
@@ -81,7 +81,7 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Secondary 3">
+                  <Label fx:id="txtLevel" text="Secondary 3">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
@@ -98,14 +98,14 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="2 times a week">
+                  <Label fx:id="txtFrequency" text="2 times a week">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="90.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0">
                <children>
                   <Label text="Duration">
                      <font>
@@ -115,7 +115,7 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="6 months">
+                  <Label fx:id="txtDuration" text="6 months">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
@@ -132,7 +132,7 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Other">
+                  <Label fx:id="txtGender" text="Other">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
@@ -149,7 +149,7 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Full-time: $40-$60/hourMOE: $60-70/hour" wrapText="true">
+                  <Label fx:id="txtRates" text="Full-time: $40-$60/hourMOE: $60-70/hour" wrapText="true">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
@@ -166,7 +166,7 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Student has ADHD, requires a patient and slow teacher." wrapText="true">
+                  <Label fx:id="txtParentNote" text="Student has ADHD, requires a patient and slow teacher." wrapText="true">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
@@ -181,5 +181,55 @@
             <Insets bottom="20.0" />
          </VBox.margin>
       </HBox>
+      <HBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" spacing="15.0">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="670.0">
+               <children>
+                  <Label text="Availability">
+                     <font>
+                        <Font name="NiveauGroteskMedium" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="4.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="txtAvailability" text="Monday, Friday, Wednesday">
+                     <font>
+                        <Font name="Inter Medium" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox fx:id="btnViewPendingTutors" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onViewPendingTutorsClick" prefHeight="40.0" spacing="4.0" style="-fx-background-radius: 100; -fx-background-color: #E3E5E1;">
+               <children>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/person-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="View pending tutors">
+                     <font>
+                        <Font name="Inter Medium" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </HBox>
    </children>
+   <padding>
+      <Insets top="10.0" />
+   </padding>
 </VBox>

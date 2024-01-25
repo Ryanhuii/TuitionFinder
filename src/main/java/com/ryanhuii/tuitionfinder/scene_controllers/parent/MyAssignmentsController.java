@@ -1,6 +1,7 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 
 import com.ryanhuii.tuitionfinder.model.Assignment;
+import com.ryanhuii.tuitionfinder.model.Parent;
 import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.service.ParentService;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;
@@ -27,6 +28,8 @@ public class MyAssignmentsController {
 
     @Autowired
     AssignmentService assignmentService;
+    @Autowired
+    ParentService parentService;
 
     // navigation
     @FXML
@@ -43,16 +46,47 @@ public class MyAssignmentsController {
 
     public void initialize() {
         Platform.runLater(() -> vBoxFocus.requestFocus());
+        vBoxAssignmentList.setSpacing(10);
 
         // call the database and get the list of my assignments
+        refreshAssignmentList();
+//        List<Assignment> myAssignments = assignmentService.getAssignments(ParentUtils.getParent().getAssignmentList());
+//        try {
+//            for (Assignment assignment : myAssignments) {
+//                FXMLLoader loader = new FXMLLoader();
+//                loader.setLocation(getClass().getResource("/pages/parent/assignment-item.fxml"));
+//                //loader.setControllerFactory(aClass -> ParentUtils.getApplicationContext().getBean(aClass)); // shd i do this
+//                VBox itemVBox = loader.load();
+//
+//                AssignmentItemController controller = loader.getController();
+//                controller.transferAssignmentDetails(assignment);
+//
+//                vBoxAssignmentList.getChildren().add(itemVBox);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public void deleteAssignment(Assignment assignment) {
+        System.out.println("page has been refreshed. Will now...delete assignment" + assignment.getFormDetails());
+        assignmentService.deleteAssignment(assignment);
+        ParentUtils.setParent(parentService.deleteAssignmentFromAssignmentList(assignment));
+        refreshAssignmentList();
+    }
+
+    private void refreshAssignmentList() {
+        vBoxAssignmentList.getChildren().clear();
         List<Assignment> myAssignments = assignmentService.getAssignments(ParentUtils.getParent().getAssignmentList());
         try {
             for (Assignment assignment : myAssignments) {
-//            System.out.println("Assignment found: ");
-//            System.out.println(assignment.toString());
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/pages/parent/assignment-item.fxml"));
+                //loader.setControllerFactory(aClass -> ParentUtils.getApplicationContext().getBean(aClass)); // shd i do this
                 VBox itemVBox = loader.load();
+
+                AssignmentItemController controller = loader.getController();
+                controller.transferAssignmentDetails(assignment);
 
                 vBoxAssignmentList.getChildren().add(itemVBox);
             }
