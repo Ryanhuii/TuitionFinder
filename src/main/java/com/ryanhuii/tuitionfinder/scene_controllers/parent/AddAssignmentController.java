@@ -2,6 +2,9 @@ package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 
 import atlantafx.base.util.IntegerStringConverter;
 import com.ryanhuii.tuitionfinder.model.Assignment;
+import com.ryanhuii.tuitionfinder.model.Parent;
+import com.ryanhuii.tuitionfinder.service.AssignmentService;
+import com.ryanhuii.tuitionfinder.service.ParentService;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import javafx.application.Platform;
@@ -18,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.controlsfx.control.CheckComboBox;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -26,6 +30,10 @@ import java.util.List;
 @Component
 public class AddAssignmentController {
 
+    @Autowired
+    ParentService parentService;
+    @Autowired
+    AssignmentService assignmentService;
     Assignment assignment = new Assignment();
 
     @FXML
@@ -191,6 +199,12 @@ public class AddAssignmentController {
         assignment.setRate(0);
 
         // Submit the Assignment, i.e. upload it to the database
+        Assignment result = assignmentService.createAssignment(assignment);
+        if (result != null) System.out.println("Assignment successfully created!");
+
+        // Additionally, add this assignment to the parent list via service database function
+        Parent parentResult = parentService.addAssignmentToParentAssignmentList(assignment.getAssignment_id(), ParentUtils.getParent());
+        if (parentResult != null) System.out.println("Parent successfully updated!");
 
         // maybe display a UI prompt to say hey it's successful
     }

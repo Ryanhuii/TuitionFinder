@@ -1,6 +1,7 @@
 package com.ryanhuii.tuitionfinder.utils;
 
 import com.ryanhuii.tuitionfinder.model.Account;
+import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.model.Parent;
 import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.scene_controllers.parent.ViewTutorController;
@@ -9,13 +10,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ParentUtils {
+    @Getter
     private static ApplicationContext applicationContext;
+    @Getter
     private static Account account;
+    @Getter
     private static Parent parent;
 
     // general switch scene function
