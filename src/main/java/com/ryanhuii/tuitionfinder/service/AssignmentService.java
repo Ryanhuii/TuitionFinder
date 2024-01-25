@@ -22,7 +22,7 @@ public class AssignmentService {
         return repository.findById(id).get();
     }
 
-    public List<Assignment> getAssignments(List<String> assignmentList) {
+    public List<Assignment> getParentAssignments(List<String> assignmentList) {
         List<Assignment> objectList = new ArrayList<>();
         for (String assignment_id : assignmentList) {
             Assignment assignment = getAssignmentById(assignment_id);
@@ -36,5 +36,10 @@ public class AssignmentService {
         System.out.println("deleting assignment: " + assignment.getParentNote());
         repository.delete(assignment);
         System.out.println("Assignment deleted form database");
+    }
+
+    // Special function for tutor to see all available assignments in TuitionFinder
+    public List<Assignment> getAllAssignments() {
+        return repository.findAll();
     }
 }

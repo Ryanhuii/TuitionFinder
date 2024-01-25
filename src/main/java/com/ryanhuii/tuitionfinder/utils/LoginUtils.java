@@ -51,7 +51,7 @@ public class LoginUtils {
         // all the page controllers will display data based on the uid of the parent or account. It is managed top-level by ParentUtils for central safekeeping.
         TutorUtils.setAccount(account);
         TutorUtils.setTutor(tutor);
-        switchScene("/tutor/tutor-template.fxml",event,pageClass);
+        switchScene("/tutor/find-assignments.fxml",event,pageClass);
     }
 
     // todo: should I shift this somewhere? Will it be used for all Login, Parent and Tutor app flows?

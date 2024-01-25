@@ -1,19 +1,14 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 
 import com.ryanhuii.tuitionfinder.model.Assignment;
-import com.ryanhuii.tuitionfinder.model.Parent;
 import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.service.ParentService;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -50,22 +45,6 @@ public class MyAssignmentsController {
 
         // call the database and get the list of my assignments
         refreshAssignmentList();
-//        List<Assignment> myAssignments = assignmentService.getAssignments(ParentUtils.getParent().getAssignmentList());
-//        try {
-//            for (Assignment assignment : myAssignments) {
-//                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(getClass().getResource("/pages/parent/assignment-item.fxml"));
-//                //loader.setControllerFactory(aClass -> ParentUtils.getApplicationContext().getBean(aClass)); // shd i do this
-//                VBox itemVBox = loader.load();
-//
-//                AssignmentItemController controller = loader.getController();
-//                controller.transferAssignmentDetails(assignment);
-//
-//                vBoxAssignmentList.getChildren().add(itemVBox);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void deleteAssignment(Assignment assignment) {
@@ -77,7 +56,7 @@ public class MyAssignmentsController {
 
     private void refreshAssignmentList() {
         vBoxAssignmentList.getChildren().clear();
-        List<Assignment> myAssignments = assignmentService.getAssignments(ParentUtils.getParent().getAssignmentList());
+        List<Assignment> myAssignments = assignmentService.getParentAssignments(ParentUtils.getParent().getAssignmentList());
         try {
             for (Assignment assignment : myAssignments) {
                 FXMLLoader loader = new FXMLLoader();
