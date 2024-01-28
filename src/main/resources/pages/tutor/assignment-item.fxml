@@ -164,7 +164,7 @@
                   </Label>
                </children>
             </VBox>
-            <HBox fx:id="btnViewPendingTutors" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onViewAssignmentClick" prefHeight="40.0" spacing="4.0" style="-fx-background-radius: 100; -fx-background-color: #E3E5E1;">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onViewAssignmentClick" prefHeight="40.0" spacing="4.0" style="-fx-background-radius: 100; -fx-background-color: #E3E5E1;">
                <children>
                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>

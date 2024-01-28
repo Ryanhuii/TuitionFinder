@@ -46,4 +46,10 @@ public class ParentService {
 
         return updateParent(newParent);
     }
+
+    public String getAddressFromAssignmentUid(String assignmentId) {
+        Parent parent = repository.findParentByAssignmentListContaining(assignmentId);
+        return "Singapore " + parent.getPostalCode() + "\n" +
+                parent.getStreetName() + ", " + parent.getBlockOrApartmentNumber();
+    }
 }
