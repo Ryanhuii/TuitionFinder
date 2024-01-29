@@ -42,4 +42,9 @@ public class AssignmentService {
     public List<Assignment> getAllAssignments() {
         return repository.findAll();
     }
+
+    public void updateAssignment(Assignment assignment) {
+        repository.save(assignment);
+        System.out.println("Assignment service okay!");
+    }
 }

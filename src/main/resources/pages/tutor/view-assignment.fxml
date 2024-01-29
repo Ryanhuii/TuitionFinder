@@ -270,6 +270,9 @@
                      <HBox.margin>
                         <Insets top="40.0" />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </HBox>
                </children>
             </HBox>

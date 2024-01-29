@@ -3,6 +3,7 @@ package com.ryanhuii.tuitionfinder.scene_controllers.tutor;
 import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.service.TutorService;
+import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -77,7 +78,7 @@ public class FindAssignmentsController {
 
     @FXML
     void onLogout(MouseEvent event) {
-
+        LoginUtils.switchScene("/account/login.fxml",event,getClass());
     }
 
 }

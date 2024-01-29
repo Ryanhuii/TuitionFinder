@@ -2,6 +2,8 @@ package com.ryanhuii.tuitionfinder.scene_controllers.tutor;
 
 import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.service.ParentService;
+import com.ryanhuii.tuitionfinder.utils.LoginUtils;
+import com.ryanhuii.tuitionfinder.utils.TagUtils;
 import com.ryanhuii.tuitionfinder.utils.TutorUtils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -69,6 +71,8 @@ public class ViewAssignmentController {
     @FXML
     void onApplyClicked(MouseEvent event) {
         System.out.println("Applying for this assignment..");
+        System.out.println(TutorUtils.getTutor().toString());
+        TutorUtils.applyForAssignment(assignment,event,getClass());
     }
 
     @FXML
@@ -83,12 +87,12 @@ public class ViewAssignmentController {
 
     @FXML
     void onFindAssignmentsClick(MouseEvent event) {
-
+        TutorUtils.switchScene("find-assignments.fxml",event,getClass());
     }
 
     @FXML
     void onLogout(MouseEvent event) {
-
+        LoginUtils.switchScene("/account/login.fxml",event,getClass());
     }
 
     public void transferAssignmentDetails(Assignment assignment) {
@@ -104,6 +108,11 @@ public class ViewAssignmentController {
         txtParentNote.setText(assignment.getParentNote());
         txtAvailability.setText(assignment.getAvailability().toString());
 
+        txtTagLevel.setText(TagUtils.setTagLevel(assignment));
+        txtTagSubject.setText(TagUtils.setTagSubject(assignment));
+
         txtAddress.setText(parentService.getAddressFromAssignmentUid(assignment.getAssignment_id()));
     }
+
+
 }

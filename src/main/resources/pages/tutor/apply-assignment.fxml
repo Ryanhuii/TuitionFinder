@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="vBoxFocus" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.scene_controllers.tutor.ApplyAssignmentController">
+   <children>
+      <HBox alignment="CENTER" spacing="200.0">
+         <children>
+            <HBox alignment="CENTER" prefWidth="300.0" spacing="40.0">
+               <children>
+                  <Label fx:id="btnDashboard" onMouseClicked="#onDashboardClick" text="Dashboard">
+                     <font>
+                        <Font name="NiveauGroteskBold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="btnFindAssignments" onMouseClicked="#onFindAssignmentsClick" text="Find Assignments">
+                     <font>
+                        <Font name="NiveauGroteskBold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="4.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="TuitionFinder">
+                           <font>
+                              <Font name="NiveauGroteskBold" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label text=" For Tutors">
+                           <font>
+                              <Font name="NiveauGroteskBold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefWidth="300.0">
+               <children>
+                  <Label fx:id="btnLogout" alignment="CENTER_RIGHT" onMouseClicked="#onLogout" text="Logout">
+                     <font>
+                        <Font name="NiveauGroteskBold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="80.0" top="30.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0">
+         <children>
+            <Button fx:id="btnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBackClicked" prefHeight="36.0" />
+         </children>
+      </HBox>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="700.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <children>
+            <Label fx:id="txtSubject" text="txtSubject">
+               <font>
+                  <Font name="Inter Medium" size="36.0" />
+               </font>
+            </Label>
+            <HBox spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER" style="-fx-background-color: #EEC7B0; -fx-background-radius: 6;">
+                     <children>
+                        <Label fx:id="txtTagSubject" text="txtTagSubject">
+                           <font>
+                              <Font name="Inter Light" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="10.0" right="10.0" top="2.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" style="-fx-background-color: #ECC6DF; -fx-background-radius: 6;">
+                     <children>
+                        <Label fx:id="txtTagLevel" text="txtTagLevel">
+                           <font>
+                              <Font name="Inter Light" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="10.0" right="10.0" top="2.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="700.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <children>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
+                     <children>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0">
+                           <children>
+                              <Label text="Frequency">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="txtFrequency" text="txtFrequency">
+                                 <font>
+                                    <Font name="Inter Medium" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0">
+                           <children>
+                              <Label text="Rate">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="textFieldRate" onKeyTyped="#validateInputs" promptText="\$/hour">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Inter Medium" size="12.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
+                           <children>
+                              <Label text="My availability">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="6.0">
+                                 <children>
+                                    <CheckBox fx:id="cbMonday" mnemonicParsing="false" onAction="#updateAvailability" text="Monday">
+                                       <font>
+                                          <Font name="Inter Medium" size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="cbTuesday" mnemonicParsing="false" onAction="#updateAvailability" text="Tuesday">
+                                       <font>
+                                          <Font name="Inter Medium" size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="cbWednesday" mnemonicParsing="false" onAction="#updateAvailability" text="Wednesday">
+                                       <font>
+                                          <Font name="Inter Medium" size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="cbThursday" mnemonicParsing="false" onAction="#updateAvailability" text="Thursday">
+                                       <font>
+                                          <Font name="Inter Medium" size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="cbFriday" mnemonicParsing="false" onAction="#updateAvailability" text="Friday">
+                                       <font>
+                                          <Font name="Inter Medium" size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="cbSaturday" mnemonicParsing="false" onAction="#updateAvailability" text="Saturday">
+                                       <font>
+                                          <Font name="Inter Medium" size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="cbSunday" mnemonicParsing="false" onAction="#updateAvailability" text="Sunday">
+                                       <font>
+                                          <Font name="Inter Medium" size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0">
+                     <children>
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0">
+                           <children>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0">
+                                 <children>
+                                    <Label text="Availability" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="txtAvailability" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="txtAvailability" wrapText="true">
+                                       <font>
+                                          <Font name="Inter Medium" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0">
+                                 <children>
+                                    <Label text="Rates">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="txtRates" text="txtRates" wrapText="true">
+                                       <font>
+                                          <Font name="Inter Medium" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0">
+                           <children>
+                              <Label text="Why choose me?">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="textAreaChooseMe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#validateInputs" prefHeight="140.0" prefWidth="500.0" promptText="Elaborate on why you would be a good pick for this parent">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Inter Medium" size="12.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children></VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <HBox fx:id="btnConfirm" alignment="CENTER" onMouseClicked="#onApplyClicked" prefHeight="36.0" prefWidth="100.0" spacing="6.0" style="-fx-background-color: #8DCAB1; -fx-background-radius: 100;">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icon-tick.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Confirm" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <padding>
+                        <Insets right="2.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>
