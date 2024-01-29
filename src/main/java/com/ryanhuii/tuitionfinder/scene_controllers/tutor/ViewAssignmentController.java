@@ -82,7 +82,7 @@ public class ViewAssignmentController {
 
     @FXML
     void onDashboardClick(MouseEvent event) {
-
+        TutorUtils.switchScene("dashboard-my-schedule.fxml",event,getClass());
     }
 
     @FXML

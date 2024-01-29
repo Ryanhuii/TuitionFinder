@@ -5,6 +5,7 @@ import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.service.TutorService;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
+import com.ryanhuii.tuitionfinder.utils.TutorUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,12 +69,12 @@ public class FindAssignmentsController {
 
     @FXML
     void onDashboardClick(MouseEvent event) {
-
+        TutorUtils.switchScene("dashboard-my-schedule.fxml",event,getClass());
     }
 
     @FXML
     void onFindAssignmentsClick(MouseEvent event) {
-
+        TutorUtils.switchScene("find-assignments.fxml",event,getClass());
     }
 
     @FXML

@@ -116,7 +116,7 @@ public class ApplyAssignmentController {
             service.submitAssignmentApplication(application,assignment);
 
             System.out.println("Apply clicked okay!");
-            TutorUtils.switchScene("dashboard.fxml",event,getClass());
+            TutorUtils.switchScene("dashboard-my-schedule.fxml",event,getClass());
         }
     }
     private void updateConfirmButton() {
