@@ -86,6 +86,12 @@
 			<artifactId>controlsfx</artifactId>
 			<version>11.2.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.calendarfx</groupId>
+			<artifactId>view</artifactId>
+			<version>11.12.6</version>
+		</dependency>
     </dependencies>
 
 	<build>

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -86,12 +87,20 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label text="Pending Applications (X)" underline="true">
+            <Label fx:id="titlePendingApplications" text="Pending Applications (X)" underline="true">
                <font>
                   <Font name="NiveauGroteskBold" size="36.0" />
                </font>
             </Label>
          </children>
       </HBox>
+      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="920.0">
+         <content>
+            <VBox fx:id="vBoxApplicationList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" spacing="10.0" />
+         </content>
+         <VBox.margin>
+            <Insets top="40.0" />
+         </VBox.margin>
+      </ScrollPane>
    </children>
 </VBox>

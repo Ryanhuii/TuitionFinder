@@ -22,6 +22,8 @@ public class AssignmentApplication {
     List<String> lessonSchedule = new ArrayList<>();
     private String whyChooseMe;
 
+    private String applicationStatus = "Pending"; // application status can be "Pending", "Rejected", or "Accepted"
+
     public String printDetails() {
         return "AssignmentApplication{" +
                 "application_id='" + application_id + '\'' +
@@ -29,6 +31,7 @@ public class AssignmentApplication {
                 ", tutorRate='" + tutorRate + '\'' +
                 ", lessonSchedule=" + lessonSchedule +
                 ", whyChooseMe='" + whyChooseMe + '\'' +
+                ", applicationStatus='" + applicationStatus + '\'' +
                 '}';
     }
 }

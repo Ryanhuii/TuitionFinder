@@ -83,7 +83,7 @@
                   <Font name="NiveauGroteskBold" size="36.0" />
                </font>
             </Label>
-            <Label onMouseClicked="#onPendingApplicationsClicked" text="Pending Applications (X)">
+            <Label fx:id="titlePendingApplications" onMouseClicked="#onPendingApplicationsClicked" text="Pending Applications (X)">
                <font>
                   <Font name="NiveauGroteskBold" size="36.0" />
                </font>

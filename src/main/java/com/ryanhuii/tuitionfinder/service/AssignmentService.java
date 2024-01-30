@@ -1,6 +1,7 @@
 package com.ryanhuii.tuitionfinder.service;
 
 import com.ryanhuii.tuitionfinder.model.Assignment;
+import com.ryanhuii.tuitionfinder.model.AssignmentApplication;
 import com.ryanhuii.tuitionfinder.repository.AssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,8 +44,19 @@ public class AssignmentService {
         return repository.findAll();
     }
 
+
+
     public void updateAssignment(Assignment assignment) {
         repository.save(assignment);
         System.out.println("Assignment service okay!");
+    }
+
+    public List<Assignment> getAssignmentsAppliedTo(List<AssignmentApplication> pendingApplications) {
+        List<Assignment> assignmentsAppliedTo = new ArrayList<>();
+        for (AssignmentApplication application : pendingApplications) {
+            assignmentsAppliedTo.add(repository.findAssignmentByAssignmentApplicationsContaining(application.getApplication_id()));
+        }
+        System.out.println("We found " + assignmentsAppliedTo.size() + " assignments linked with said applications");
+        return assignmentsAppliedTo;
     }
 }

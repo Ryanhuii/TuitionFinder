@@ -6,6 +6,7 @@ import com.ryanhuii.tuitionfinder.repository.AssignmentApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,5 +26,16 @@ public class AssignmentApplicationService {
         assignmentService.updateAssignment(assignment);
 
         System.out.println("Application service okay!");
+    }
+
+    public List<AssignmentApplication> getPendingApplications(String tutorID) {
+        List<AssignmentApplication> allApplications = repository.findAssignmentApplicationsByTutorID(tutorID);
+        List<AssignmentApplication> pendingApplications = new ArrayList<>();
+        for(AssignmentApplication application : allApplications) {
+            if (application.getApplicationStatus().equals("Pending")) pendingApplications.add(application);
+            System.out.println(application.printDetails());
+        }
+        System.out.println("We found " + pendingApplications.size() + " pending applications");
+        return pendingApplications;
     }
 }

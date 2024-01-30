@@ -1,12 +1,7 @@
 package com.ryanhuii.tuitionfinder.utils;
 
-import com.ryanhuii.tuitionfinder.model.Account;
-import com.ryanhuii.tuitionfinder.model.Assignment;
-import com.ryanhuii.tuitionfinder.model.Parent;
-import com.ryanhuii.tuitionfinder.model.Tutor;
-import com.ryanhuii.tuitionfinder.scene_controllers.tutor.ApplyAssignmentController;
-import com.ryanhuii.tuitionfinder.scene_controllers.tutor.FindAssignmentItemViewController;
-import com.ryanhuii.tuitionfinder.scene_controllers.tutor.ViewAssignmentController;
+import com.ryanhuii.tuitionfinder.model.*;
+import com.ryanhuii.tuitionfinder.scene_controllers.tutor.*;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -90,6 +85,27 @@ public class TutorUtils {
             // show the assignment details to the tutor
             ApplyAssignmentController controller = loader.getController();
             controller.transferAssignmentDetails(assignment);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void viewApplication(AssignmentApplication assignmentApplication, Assignment assignment, MouseEvent event, Class<?> pageClass) {
+        try {
+            FXMLLoader loader = new FXMLLoader(pageClass.getResource("/pages/tutor/" + "view-application.fxml"));
+
+            loader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
+
+            javafx.scene.Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            // show the assignment details to the tutor
+            ViewApplicationController controller = loader.getController();
+            controller.transferAssignmentDetails(assignmentApplication, assignment);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
