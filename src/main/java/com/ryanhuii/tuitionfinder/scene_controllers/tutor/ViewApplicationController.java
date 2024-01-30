@@ -4,10 +4,14 @@ import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.model.AssignmentApplication;
 import com.ryanhuii.tuitionfinder.service.ParentService;
 import com.ryanhuii.tuitionfinder.utils.TagUtils;
+import com.ryanhuii.tuitionfinder.utils.TutorUtils;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,13 @@ public class ViewApplicationController {
     AssignmentApplication application;
     @Autowired
     ParentService parentService;
+
+    @FXML
+    private Label txtRate;
+    @FXML
+    private Label txtLessonSchedule;
+    @FXML
+    private Label txtWhyChooseMe;
 
     @FXML
     private Button btnBack;
@@ -52,19 +63,28 @@ public class ViewApplicationController {
     @FXML
     private VBox vBoxFocus;
 
+    public void initialize() {
+        Platform.runLater( () -> vBoxFocus.requestFocus());
+
+        // Setting up the appearance of the back button
+        double iconDimension = 20;
+        ImageView backArrow = new ImageView(new Image(getClass().getResourceAsStream("/images/arrow_back.png")));
+        backArrow.setFitHeight(iconDimension);
+        backArrow.setFitWidth(iconDimension);
+        btnBack.setGraphic(backArrow);
+    }
+
     @FXML
     void onBackClicked(ActionEvent event) {
-
+        TutorUtils.switchScene("dashboard-pending-applications.fxml",event,getClass());
     }
-
     @FXML
     void onDashboardClick(MouseEvent event) {
-
+        TutorUtils.switchScene("dashboard-my-schedule.fxml",event,getClass());
     }
-
     @FXML
     void onFindAssignmentsClick(MouseEvent event) {
-
+        TutorUtils.switchScene("find-assignments.fxml",event,getClass());
     }
 
     @FXML
@@ -72,12 +92,12 @@ public class ViewApplicationController {
 
     }
 
-    public void transferAssignmentDetails(AssignmentApplication assignmentApplication, Assignment assignment) {
+    public void transferAssignmentDetails(AssignmentApplication myApplication, Assignment assignment) {
         // System.out.println("Transferring account details.");
         this.assignment = assignment;
-        this.application = assignmentApplication;
+        this.application = myApplication;
 
-        txtSubject.setText(assignment.getSubject() + application.getWhyChooseMe());
+        txtSubject.setText(assignment.getSubject());
         txtLevel.setText(assignment.getLevel());
         txtFrequency.setText(assignment.getFrequency() + " times a week");
         txtGender.setText(assignment.getGender());
@@ -90,5 +110,9 @@ public class ViewApplicationController {
         txtTagSubject.setText(TagUtils.setTagSubject(assignment));
 
         txtAddress.setText(parentService.getAddressFromAssignmentUid(assignment.getAssignment_id()));
+
+        txtLessonSchedule.setText(myApplication.getLessonSchedule().toString());
+        txtRate.setText(myApplication.getTutorRate());
+        txtWhyChooseMe.setText(myApplication.getWhyChooseMe());
     }
 }

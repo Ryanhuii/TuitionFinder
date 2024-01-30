@@ -199,7 +199,7 @@
                         </HBox>
                         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="325.0">
                            <children>
-                              <Label text="Address (I Think)">
+                              <Label text="Address">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
