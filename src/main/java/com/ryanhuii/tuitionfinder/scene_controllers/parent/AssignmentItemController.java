@@ -68,7 +68,8 @@ public class AssignmentItemController {
 
     @FXML
     void onViewPendingTutorsClick(MouseEvent event) {
-
+        //System.out.println("viewing the tutors that applied to this assignment");
+        ParentUtils.viewPendingTutors(assignment,event,getClass());
     }
 
     void updateAssignmentDetailsDisplay() {

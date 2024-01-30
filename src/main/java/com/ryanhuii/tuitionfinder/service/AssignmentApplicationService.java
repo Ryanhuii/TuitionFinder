@@ -38,4 +38,16 @@ public class AssignmentApplicationService {
         System.out.println("We found " + pendingApplications.size() + " pending applications");
         return pendingApplications;
     }
+
+    public AssignmentApplication getAssignmentById(String assignmentApplicationID) {
+        return repository.findById(assignmentApplicationID).get();
+    }
+
+    public List<AssignmentApplication> getAssignmentApplications(Assignment assignment) {
+        List<AssignmentApplication> applications = new ArrayList<>();
+        for (String application_id : assignment.getAssignmentApplications()) {
+            applications.add(repository.findById(application_id).get());
+        }
+        return applications;
+    }
 }

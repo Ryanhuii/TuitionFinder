@@ -1,18 +1,23 @@
 package com.ryanhuii.tuitionfinder.service;
 
 import com.ryanhuii.tuitionfinder.model.Account;
+import com.ryanhuii.tuitionfinder.model.Assignment;
+import com.ryanhuii.tuitionfinder.model.AssignmentApplication;
 import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.repository.AccountRepository;
 import com.ryanhuii.tuitionfinder.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class TutorService {
     @Autowired
     private TutorRepository repository;
+    @Autowired
+    private AssignmentApplicationService assignmentApplicationService;
 
     // Create
     public Tutor createTutor(Tutor tutor) {
@@ -30,6 +35,18 @@ public class TutorService {
 
     public void verifyExistence() {
         System.out.println("This Account Service Exists");
+    }
+
+    public List<Tutor> getTutorsThatAppliedToThisAssignment(Assignment assignment) {
+        // Assignment -> get the assignment application object -> get the tutor id from the application
+
+        List<Tutor> tutorsThatApplied = new ArrayList<>();
+        for (String assignmentApplicationID : assignment.getAssignmentApplications()) {
+            AssignmentApplication application = assignmentApplicationService.getAssignmentById(assignmentApplicationID);
+            Tutor tutor = repository.findById(application.getTutorID()).get();
+            tutorsThatApplied.add(tutor);
+        }
+        return tutorsThatApplied;
     }
 
     //public Tutor updateTutor(Tutor tutor) {}

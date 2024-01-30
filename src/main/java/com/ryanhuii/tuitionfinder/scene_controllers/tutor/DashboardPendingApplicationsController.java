@@ -39,6 +39,8 @@ public class DashboardPendingApplicationsController {
     @FXML
     private VBox vBoxFocus;
 
+    // todo: when the parent deletes an assignment, I have to go delete the AssignmentApplication objects from
+    // the database as well.
     public void initialize() {
         Platform.runLater(() -> vBoxFocus.requestFocus());
         // get all my applications, as well as the corresponding assignment it is attached to
