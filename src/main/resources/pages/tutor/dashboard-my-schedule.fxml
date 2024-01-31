@@ -76,14 +76,19 @@
             <Insets bottom="80.0" top="30.0" />
          </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER" spacing="20.0">
+      <HBox alignment="CENTER" spacing="60.0">
          <children>
             <Label text="My Schedule" underline="true">
                <font>
                   <Font name="NiveauGroteskBold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="titlePendingApplications" onMouseClicked="#onPendingApplicationsClicked" text="Pending Applications (X)">
+            <Label fx:id="btnLessons" onMouseClicked="#onLessonsClicked" text="Lessons">
+               <font>
+                  <Font name="NiveauGroteskBold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="titlePendingApplications" onMouseClicked="#onPendingApplicationsClicked" text="Pending (X)">
                <font>
                   <Font name="NiveauGroteskBold" size="36.0" />
                </font>
@@ -92,17 +97,8 @@
                </cursor>
             </Label>
          </children>
-      </HBox>
-      <HBox alignment="CENTER" spacing="20.0">
-         <children>
-            <Label fx:id="txtTest" text="My Schedule">
-               <font>
-                  <Font name="NiveauGroteskBold" size="36.0" />
-               </font>
-            </Label>
-         </children>
          <VBox.margin>
-            <Insets top="100.0" />
+            <Insets bottom="20.0" />
          </VBox.margin>
       </HBox>
    </children>
