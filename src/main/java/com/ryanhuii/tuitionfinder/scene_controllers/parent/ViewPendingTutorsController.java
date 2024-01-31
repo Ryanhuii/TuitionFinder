@@ -100,7 +100,7 @@ public class ViewPendingTutorsController {
                 }
                 // for each item controller, inject both the tutor and the application object.
                 PendingTutorCardController cardController = loader.getController();
-                cardController.setCardData(tutor,application);
+                cardController.setCardData(tutor, assignment ,application);
 
                 if (column == 4) {
                     column = 0;

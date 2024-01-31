@@ -9,4 +9,6 @@ import java.util.Optional;
 
 public interface AssignmentRepository extends MongoRepository<Assignment, String> {
     public Optional<Assignment> findAssignmentByAssignmentApplicationsContaining(String application_uid);
+
+    public Optional<List<Assignment>> findAssignmentsByTutorUIDAndStatus(String tutorUID, String status);
 }

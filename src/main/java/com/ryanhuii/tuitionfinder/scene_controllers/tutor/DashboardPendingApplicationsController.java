@@ -46,7 +46,7 @@ public class DashboardPendingApplicationsController {
         // get all my applications, as well as the corresponding assignment it is attached to
         List<AssignmentApplication> allMyPendingApplications = applicationService.getPendingApplications(TutorUtils.getTutor().getUid());
         List<Assignment> assignmentsAppliedTo = assignmentService.getAssignmentsAppliedTo(allMyPendingApplications);
-        titlePendingApplications.setText("Pending Applications (" + assignmentsAppliedTo.size() + ")"); // todo
+        titlePendingApplications.setText("Pending Applications (" + assignmentsAppliedTo.size() + ")");
         System.out.println("Assignments that I applied to that still exist: " + assignmentsAppliedTo.size());
         refreshAssignmentList(allMyPendingApplications,assignmentsAppliedTo);
     }

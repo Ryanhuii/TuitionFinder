@@ -1,5 +1,6 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 
+import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.model.AssignmentApplication;
 import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
@@ -11,6 +12,7 @@ import javafx.scene.layout.VBox;
 public class PendingTutorCardController {
 
     Tutor tutor;
+    Assignment assignment;
     AssignmentApplication application;
 
     @FXML
@@ -25,11 +27,12 @@ public class PendingTutorCardController {
     @FXML
     void onTutorClick(MouseEvent event) {
         System.out.println("DISPLAY THE TUTOR APPLICATION");
-        ParentUtils.displayTutorApplication(event,getClass(),tutor,application);
+        ParentUtils.displayTutorApplication(event,getClass(),tutor, assignment ,application);
     }
 
-    public void setCardData(Tutor tutor, AssignmentApplication application) {
+    public void setCardData(Tutor tutor, Assignment assignment, AssignmentApplication application) {
         this.tutor = tutor;
+        this.assignment = assignment;
         this.application = application;
         updateDisplayDetails();
     }

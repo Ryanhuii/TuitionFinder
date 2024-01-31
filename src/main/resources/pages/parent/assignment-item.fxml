@@ -23,7 +23,7 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #EEC7B1; -fx-background-radius: 4;">
+                  <HBox fx:id="hBoxStatus" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #EEC7B1; -fx-background-radius: 4;">
                      <children>
                         <Label fx:id="txtStatus" text="Pending">
                            <font>

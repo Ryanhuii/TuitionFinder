@@ -31,14 +31,10 @@ public class Assignment {
     String parentNote;
 
     List<String> assignmentApplications; // it's just a list of application IDs.
-    // properties set by tutor when confirmed
-    String tutorUID;
-    int rate; // the rate payable to the tutor
 
-    // will be set by the tutor ONCE CONFIRMED
-    // it's probably just the uhm, same as the availability but ya know,
-    // I leave the option to play around with this. If I have the time.
-    // I probably don't.
+    // properties set by tutor ONCE CONFIRMED
+    String tutorUID;
+    String rate; // the rate payable to the tutor
     List<String> lessonSchedule;
 
     public String getFormDetails() {

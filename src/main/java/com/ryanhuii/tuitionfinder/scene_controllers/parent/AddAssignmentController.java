@@ -220,9 +220,10 @@ public class AddAssignmentController {
         // Also generate a new uid for this assignment
         assignment.setAssignment_id(LoginUtils.generateUID());
         assignment.setStatus("Pending");
+        assignment.setLessonSchedule(new ArrayList<>());
         assignment.setAssignmentApplications(new ArrayList<>());
         assignment.setTutorUID("");
-        assignment.setRate(0);
+        assignment.setRate("Unrated");
 
         // Submit the Assignment, i.e. upload it to the database
         Assignment result = assignmentService.createAssignment(assignment);

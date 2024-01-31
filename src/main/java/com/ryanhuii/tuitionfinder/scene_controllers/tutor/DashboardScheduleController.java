@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class DashboardScheduleController {
@@ -25,13 +26,15 @@ public class DashboardScheduleController {
     AssignmentService assignmentService;
 
     @FXML
+    private Label txtTest;
+    @FXML
     private Label titlePendingApplications;
-    @FXML
-    private Label btnDashboard;
-    @FXML
-    private Label btnFindAssignments;
-    @FXML
-    private Label btnLogout;
+//    @FXML
+//    private Label btnDashboard;
+//    @FXML
+//    private Label btnFindAssignments;
+//    @FXML
+//    private Label btnLogout;
     @FXML
     private VBox vBoxFocus;
 
@@ -42,6 +45,13 @@ public class DashboardScheduleController {
         List<AssignmentApplication> pendingApplications = applicationService.getPendingApplications(TutorUtils.getTutor().getUid());
         List<Assignment> assignmentsAppliedTo = assignmentService.getAssignmentsAppliedTo(pendingApplications);
         titlePendingApplications.setText("Pending Applications (" + assignmentsAppliedTo.size() + ")");
+
+        getMyOngoingAssignments();
+    }
+
+    private void getMyOngoingAssignments() {
+        Optional<List<Assignment>> myAssignments = assignmentService.getTutorOngoingAssignments(TutorUtils.getTutor().getUid());
+        myAssignments.ifPresent(assignments -> txtTest.setText("You have " + assignments.size() + " ongoing assignments"));
     }
 
     @FXML

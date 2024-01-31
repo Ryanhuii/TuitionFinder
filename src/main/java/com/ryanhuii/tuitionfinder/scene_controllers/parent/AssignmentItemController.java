@@ -16,43 +16,34 @@ import org.springframework.stereotype.Component;
 public class AssignmentItemController {
 
     private Assignment assignment;
+    boolean onGoingAssignment = false;
 
+    @FXML
+    private HBox hBoxStatus;
     @FXML
     private ImageView btnDelete;
-
     @FXML
     private HBox btnViewPendingTutors;
-
     @FXML
     private HBox hBoxIncomingRequest;
-
     @FXML
     private Label txtAvailability;
-
     @FXML
     private Label txtDuration;
-
     @FXML
     private Label txtFrequency;
-
     @FXML
     private Label txtGender;
-
     @FXML
     private Label txtLevel;
-
     @FXML
     private Label txtParentNote;
-
     @FXML
     private Label txtRates;
-
     @FXML
     private Label txtStatus;
-
     @FXML
     private Label txtSubject;
-
     @FXML
     private Label txtHiddenAssignmentId; // this is so stupid
 
@@ -69,7 +60,7 @@ public class AssignmentItemController {
     @FXML
     void onViewPendingTutorsClick(MouseEvent event) {
         //System.out.println("viewing the tutors that applied to this assignment");
-        ParentUtils.viewPendingTutors(assignment,event,getClass());
+        if (!onGoingAssignment) ParentUtils.viewPendingTutors(assignment,event,getClass());
     }
 
     void updateAssignmentDetailsDisplay() {
@@ -80,16 +71,32 @@ public class AssignmentItemController {
         txtDuration.setText(assignment.getDuration() + " months");
         txtRates.setText(assignment.getRates());
         txtParentNote.setText(assignment.getParentNote());
-        String availability = "";
-        for (int i=0;i<assignment.getAvailability().size();i++) {
-            availability += assignment.getAvailability().get(i);
-            if (i != assignment.getAvailability().size()-1) availability += ", ";
-        }
+//        String availability = "";
+//        for (int i=0;i<assignment.getAvailability().size();i++) {
+//            availability += assignment.getAvailability().get(i);
+//            if (i != assignment.getAvailability().size()-1) availability += ", ";
+//        }
         txtAvailability.setText(assignment.getAvailability().toString());
 
         hBoxIncomingRequest.setVisible(!assignment.getAssignmentApplications().isEmpty());
 
         txtHiddenAssignmentId.setText(assignment.getAssignment_id());
+
+        // update the colour of the status tag
+        if (assignment.getStatus().equals("Ongoing")) {
+            onGoingAssignment = true;
+            assignmentIsOngoing();
+        }
+    }
+
+    private void assignmentIsOngoing() {
+        // if the assignment is ongoing, i want to make the "incoming tutor requests" tag invisible
+        // i also want to disable the "view pending tutors" button
+        if (onGoingAssignment) {
+            hBoxStatus.setStyle("-fx-background-color: #68d973;-fx-background-radius: 4");
+            btnViewPendingTutors.setVisible(false);
+            hBoxIncomingRequest.setVisible(false);
+        }
     }
 
     void transferAssignmentDetails(Assignment assignment) {

@@ -123,7 +123,8 @@ public class ParentUtils {
         }
     }
 
-    public static void displayTutorApplication(MouseEvent event, Class<?> pageClass, Tutor tutor, AssignmentApplication application) {
+    public static void displayTutorApplication(MouseEvent event, Class<?> pageClass, Tutor tutor,
+                                               Assignment assignment, AssignmentApplication application) {
         try {
             FXMLLoader loader = new FXMLLoader(pageClass.getResource("/pages/parent/display-tutor-application.fxml"));
 
@@ -137,7 +138,7 @@ public class ParentUtils {
 
             // Transfer the selected tutor's details over to the controller
             DisplayTutorApplicationController controller = loader.getController();
-            controller.transferTutorAndApplicationDetails(tutor, application);
+            controller.transferTutorAndApplicationDetails(tutor, assignment, application);
 
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -50,4 +50,8 @@ public class AssignmentApplicationService {
         }
         return applications;
     }
+
+    public void updateApplication(AssignmentApplication application) {
+        repository.save(application);
+    }
 }

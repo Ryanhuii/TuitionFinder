@@ -49,7 +49,7 @@ public class AssignmentService {
 
     public void updateAssignment(Assignment assignment) {
         repository.save(assignment);
-        System.out.println("Assignment service okay!");
+        System.out.println("Assignment service has updated the assignment!");
     }
 
     public List<Assignment> getAssignmentsAppliedTo(List<AssignmentApplication> pendingApplications) {
@@ -60,5 +60,9 @@ public class AssignmentService {
         }
         System.out.println("We found " + assignmentsAppliedTo.size() + " assignments linked with said applications");
         return assignmentsAppliedTo;
+    }
+
+    public Optional<List<Assignment>> getTutorOngoingAssignments(String uid) {
+        return repository.findAssignmentsByTutorUIDAndStatus(uid,"Ongoing");
     }
 }

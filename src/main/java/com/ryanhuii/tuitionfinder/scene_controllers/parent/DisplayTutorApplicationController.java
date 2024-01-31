@@ -1,7 +1,10 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 
+import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.model.AssignmentApplication;
 import com.ryanhuii.tuitionfinder.model.Tutor;
+import com.ryanhuii.tuitionfinder.service.AssignmentApplicationService;
+import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import javafx.application.Platform;
@@ -15,13 +18,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DisplayTutorApplicationController {
 
     Tutor tutor;
+    Assignment assignment;
     AssignmentApplication application;
+
+    @Autowired
+    AssignmentService assignmentService;
+    @Autowired
+    AssignmentApplicationService assignmentApplicationService;
 
     @FXML
     private HBox btnConfirm;
@@ -74,8 +84,26 @@ public class DisplayTutorApplicationController {
     @FXML
     void onConfirmClicked(MouseEvent event) {
         // confirm that this tutor will be the one teaching your child!
-        // Objects that need to be updated: Assignment, and uhhh....
+        // 1. Update the Assignment object to reflect the chosen tutor's details
+        // 2. Update the assignment application object's status to "Accepted", so that it appears on the
+        //  tutor's calendar
         System.out.println("Confirming tutor!");
+        System.out.println("Tutor: " + tutor.getName());
+        System.out.println("Application: " + application.getApplication_id());
+        System.out.println("Assignment: " + assignment.getFormDetails());
+
+        // update the assignment object
+        assignment.setStatus("Ongoing");
+        assignment.setTutorUID(tutor.getUid());
+        assignment.setLessonSchedule(application.getLessonSchedule());
+        assignment.setRate(application.getTutorRate());
+        assignmentService.updateAssignment(assignment);
+
+        // update the assignment application's status
+        application.setApplicationStatus("Accepted");
+        assignmentApplicationService.updateApplication(application);
+
+        ParentUtils.switchScene("my-assignments.fxml",event,getClass());
     }
 
     @FXML
@@ -88,8 +116,9 @@ public class DisplayTutorApplicationController {
         LoginUtils.switchScene("/account/login.fxml",event,getClass());
     }
 
-    public void transferTutorAndApplicationDetails(Tutor tutor, AssignmentApplication application) {
+    public void transferTutorAndApplicationDetails(Tutor tutor, Assignment assignment, AssignmentApplication application) {
         this.tutor = tutor;
+        this.assignment = assignment;
         this.application = application;
         updateDataDisplay();
     }
