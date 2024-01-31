@@ -120,9 +120,9 @@
                   </Label>
                </children>
             </VBox>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                <children>
-                  <Label text="Parent Note">
+                  <Label text="Availability">
                      <font>
                         <Font name="NiveauGroteskMedium" size="24.0" />
                      </font>
@@ -130,7 +130,7 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="txtParentNote" text="Student has ADHD, requires a patient and slow teacher." wrapText="true">
+                  <Label fx:id="txtAvailability" text="Monday, Friday, Wednesday" wrapText="true">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
@@ -149,7 +149,7 @@
          <children>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="670.0">
                <children>
-                  <Label text="Availability">
+                  <Label text="Parent Note">
                      <font>
                         <Font name="NiveauGroteskMedium" size="24.0" />
                      </font>
@@ -157,7 +157,7 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="txtAvailability" text="Monday, Friday, Wednesday">
+                  <Label fx:id="txtParentNote" text="Student has ADHD, requires a patient and slow teacher." wrapText="true">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>

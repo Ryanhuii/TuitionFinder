@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" style="-fx-background-color: #EFF2ED;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.scene_controllers.parent.AssignmentItemController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" style="-fx-background-color: #EFF2ED;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.scene_controllers.tutor.LessonItemController">
    <children>
-      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefWidth="870.0" spacing="10.0">
                <children>
@@ -23,47 +20,11 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <HBox fx:id="hBoxStatus" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #EEC7B1; -fx-background-radius: 4;">
-                     <children>
-                        <Label fx:id="txtStatus" text="Pending">
-                           <font>
-                              <Font name="Inter Medium" size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets bottom="2.0" left="6.0" right="6.0" top="2.0" />
-                     </padding>
-                  </HBox>
-                  <HBox fx:id="hBoxIncomingRequest" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #ECC6DF; -fx-background-radius: 4;">
-                     <children>
-                        <Label text="Incoming tutor request(s)">
-                           <font>
-                              <Font name="Inter Medium" size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets bottom="2.0" left="6.0" right="6.0" top="2.0" />
-                     </padding>
-                  </HBox>
-                  <Label fx:id="txtHiddenAssignmentId" text="Label" visible="false" />
                </children>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </HBox>
-            <ImageView fx:id="btnDelete" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#onDeleteClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/delete-icon.png" />
-               </image>
-               <HBox.margin>
-                  <Insets right="6.0" />
-               </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
          </children>
          <VBox.margin>
             <Insets bottom="20.0" />
@@ -139,9 +100,9 @@
                   </Label>
                </children>
             </VBox>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="180.0">
                <children>
-                  <Label text="Rates">
+                  <Label text="My Rate">
                      <font>
                         <Font name="NiveauGroteskMedium" size="24.0" />
                      </font>
@@ -149,16 +110,16 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="txtRates" text="Full-time: $40-$60/hourMOE: $60-70/hour" wrapText="true">
+                  <Label fx:id="txtMyRate" text="Full-time: $40-$60/hourMOE: $60-70/hour" wrapText="true">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                <children>
-                  <Label text="Availability">
+                  <Label text="Lesson Schedule">
                      <font>
                         <Font name="NiveauGroteskMedium" size="24.0" />
                      </font>
@@ -166,7 +127,7 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="txtAvailability" text="Monday, Friday, Wednesday">
+                  <Label fx:id="txtLessonSchedule" text="Monday, Friday, Wednesday" wrapText="true">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
@@ -183,7 +144,7 @@
       </HBox>
       <HBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" spacing="15.0">
          <children>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="670.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="880.0">
                <children>
                   <Label text="Parent Note">
                      <font>
@@ -200,26 +161,6 @@
                   </Label>
                </children>
             </VBox>
-            <HBox fx:id="btnViewPendingTutors" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onViewPendingTutorsClick" prefHeight="40.0" spacing="4.0" style="-fx-background-radius: 100; -fx-background-color: #E3E5E1;">
-               <children>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/person-icon.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="View pending tutors">
-                     <font>
-                        <Font name="Inter Medium" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </HBox>
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />

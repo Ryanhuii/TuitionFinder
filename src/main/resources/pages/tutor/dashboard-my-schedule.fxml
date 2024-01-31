@@ -87,6 +87,9 @@
                <font>
                   <Font name="NiveauGroteskBold" size="36.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label fx:id="titlePendingApplications" onMouseClicked="#onPendingApplicationsClicked" text="Pending (X)">
                <font>

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vBoxFocus" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.scene_controllers.tutor.FindAssignmentsController">
+<VBox fx:id="vBoxFocus" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryanhuii.tuitionfinder.scene_controllers.tutor.DashboardLessonsController">
    <children>
       <HBox alignment="CENTER" spacing="200.0">
          <children>
@@ -74,32 +74,41 @@
             </HBox>
          </children>
          <VBox.margin>
-            <Insets bottom="100.0" top="30.0" />
+            <Insets bottom="80.0" top="30.0" />
          </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0">
+      <HBox alignment="CENTER" spacing="60.0">
          <children>
-            <Label text="Find Assignments">
+            <Label onMouseClicked="#onMyScheduleClicked" text="My Schedule">
+               <font>
+                  <Font name="NiveauGroteskBold" size="36.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnLessons" text="Lessons" underline="true">
                <font>
                   <Font name="NiveauGroteskBold" size="36.0" />
                </font>
             </Label>
+            <Label fx:id="titlePendingApplications" onMouseClicked="#onPendingApplicationsClicked" text="Pending Applications (X)">
+               <font>
+                  <Font name="NiveauGroteskBold" size="36.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
          </children>
-         <VBox.margin>
-            <Insets bottom="30.0" />
-         </VBox.margin>
       </HBox>
       <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="920.0">
          <content>
-            <VBox fx:id="vBoxAssignmentList" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0">
-               <children>
-                  <ImageView fx:id="imgEmpty" fitHeight="400.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../../images/empty-box.png" />
-                     </image>
-                  </ImageView>
-               </children></VBox>
+            <VBox fx:id="vBoxApplicationList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" spacing="10.0" />
          </content>
+         <VBox.margin>
+            <Insets top="40.0" />
+         </VBox.margin>
       </ScrollPane>
    </children>
 </VBox>

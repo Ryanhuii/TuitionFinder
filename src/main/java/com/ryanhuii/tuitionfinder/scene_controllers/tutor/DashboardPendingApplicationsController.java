@@ -27,6 +27,8 @@ public class DashboardPendingApplicationsController {
     AssignmentService assignmentService;
 
     @FXML
+    private Label btnLessons;
+    @FXML
     private Label titlePendingApplications;
     @FXML
     private VBox vBoxApplicationList;
@@ -46,9 +48,12 @@ public class DashboardPendingApplicationsController {
         // get all my applications, as well as the corresponding assignment it is attached to
         List<AssignmentApplication> allMyPendingApplications = applicationService.getPendingApplications(TutorUtils.getTutor().getUid());
         List<Assignment> assignmentsAppliedTo = assignmentService.getAssignmentsAppliedTo(allMyPendingApplications);
-        titlePendingApplications.setText("Pending Applications (" + assignmentsAppliedTo.size() + ")");
+        titlePendingApplications.setText("Pending (" + assignmentsAppliedTo.size() + ")");
+        TutorUtils.setPendingApplicationsCount(assignmentsAppliedTo.size());
         System.out.println("Assignments that I applied to that still exist: " + assignmentsAppliedTo.size());
         refreshAssignmentList(allMyPendingApplications,assignmentsAppliedTo);
+
+        if (TutorUtils.getMyLessonsCount() > 0) btnLessons.setText("Lessons (" + TutorUtils.getMyLessonsCount() + ")");
     }
 
     // this line of code's really important.
@@ -81,6 +86,11 @@ public class DashboardPendingApplicationsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void onLessonsClicked(MouseEvent event) {
+        TutorUtils.switchScene("dashboard-lessons.fxml",event,getClass());
     }
 
     @FXML

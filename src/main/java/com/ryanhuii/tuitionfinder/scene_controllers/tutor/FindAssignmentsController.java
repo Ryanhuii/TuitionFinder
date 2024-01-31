@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +27,9 @@ public class FindAssignmentsController {
     @Autowired
     AssignmentService assignmentService;
 
-    @FXML
-    private Label btnDashboard;
 
     @FXML
-    private Label btnFindAssignments;
-
-    @FXML
-    private Label btnLogout;
-
+    private ImageView imgEmpty;
     @FXML
     private VBox vBoxAssignmentList;
 
@@ -50,18 +45,24 @@ public class FindAssignmentsController {
 
     private void refreshAssignmentList() {
         vBoxAssignmentList.getChildren().clear();
-        List<Assignment> myAssignments = assignmentService.getAllAssignments();
+        List<Assignment> allAssignments = assignmentService.getAllAssignments();
         try {
-            for (Assignment assignment : myAssignments) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pages/tutor/assignment-item.fxml"));
-                VBox itemVBox = loader.load();
+            boolean noMoreAssignmentsForMe = true;
+            for (Assignment assignment : allAssignments) {
+                if (!assignment.getStatus().equals("Ongoing")) { // make sure that only non-confirmed assignments are present!
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/pages/tutor/assignment-item.fxml"));
+                    VBox itemVBox = loader.load();
 
-                FindAssignmentItemViewController controller = loader.getController();
-                controller.transferAssignmentDetails(assignment);
+                    FindAssignmentItemViewController controller = loader.getController();
+                    controller.transferAssignmentDetails(assignment);
 
-                vBoxAssignmentList.getChildren().add(itemVBox);
+                    vBoxAssignmentList.getChildren().add(itemVBox);
+                    noMoreAssignmentsForMe = false;
+                }
             }
+            vBoxAssignmentList.getChildren().add(imgEmpty);
+            imgEmpty.setVisible(noMoreAssignmentsForMe);
         } catch (IOException e) {
             e.printStackTrace();
         }

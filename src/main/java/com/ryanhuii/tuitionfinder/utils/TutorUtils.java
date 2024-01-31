@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
@@ -20,6 +21,11 @@ public class TutorUtils {
     private static Account account;
     @Getter
     private static Tutor tutor;
+
+    @Getter @Setter
+    private static int myLessonsCount = 0;
+    @Getter @Setter
+    private static int pendingApplicationsCount = 0;
 
     public static void switchScene(String pageName, Event event, Class pageClass) {
         try {

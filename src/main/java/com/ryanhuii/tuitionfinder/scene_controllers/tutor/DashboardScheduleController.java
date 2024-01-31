@@ -6,7 +6,6 @@ import com.calendarfx.model.Entry;
 import com.calendarfx.view.CalendarView;
 import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.model.AssignmentApplication;
-import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.service.AssignmentApplicationService;
 import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.utils.DateUtils;
@@ -57,11 +56,11 @@ public class DashboardScheduleController {
     private void setupCalendar() {
         // testing for calendar view
         CalendarView calendarView = new CalendarView(); // (1)
-        Calendar assignmentCalender = new Calendar("assignments-lol"); // (2)
+        Calendar assignmentCalender = new Calendar("My assignments"); // (2)
         //Entry<String> lesson = new Entry<>("Computing lesson");
 
         // get a list of calendar entries based on my lessons
-        List<Entry<String>> lessons = DateUtils.extractEntries(myAssignments);
+        List<Entry<String>> lessons = DateUtils.extractEntriesFromAllLessons(myAssignments);
         System.out.println("lessons array size is: " + lessons.size());
         for (Entry<String> lesson : lessons) {
             assignmentCalender.addEntry(lesson);
@@ -111,13 +110,14 @@ public class DashboardScheduleController {
 
     @FXML
     void onLessonsClicked(MouseEvent event) {
-        TutorUtils.switchScene("dashboard-lessons.fxml",event,getClass()); // todo
+        TutorUtils.switchScene("dashboard-lessons.fxml",event,getClass());
     }
 
     private void getMyOngoingAssignments() {
         Optional<List<Assignment>> getOngoingAssignments = assignmentService.getTutorOngoingAssignments(TutorUtils.getTutor().getUid());
         getOngoingAssignments.ifPresent(assignments -> btnLessons.setText("Lessons (" + assignments.size() + ")"));
         myAssignments = getOngoingAssignments.get();
+        TutorUtils.setMyLessonsCount(myAssignments.size());
     }
 
     @FXML
