@@ -41,7 +41,7 @@ public class DashboardScheduleController {
         // get all my applications, as well as the corresponding assignment it is attached to
         List<AssignmentApplication> pendingApplications = applicationService.getPendingApplications(TutorUtils.getTutor().getUid());
         List<Assignment> assignmentsAppliedTo = assignmentService.getAssignmentsAppliedTo(pendingApplications);
-        titlePendingApplications.setText("Pending Applications (" + pendingApplications.size() + ")");
+        titlePendingApplications.setText("Pending Applications (" + assignmentsAppliedTo.size() + ")");
     }
 
     @FXML

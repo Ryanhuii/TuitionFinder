@@ -49,6 +49,9 @@ public class MyAssignmentsController {
 
     public void deleteAssignment(Assignment assignment) {
         System.out.println("page has been refreshed. Will now...delete assignment" + assignment.getFormDetails());
+        // two-step process:
+        // delete the assignment object from the assignments collection
+        // delete the assignment ID from the parent's arrayList
         assignmentService.deleteAssignment(assignment);
         ParentUtils.setParent(parentService.deleteAssignmentFromAssignmentList(assignment));
         refreshAssignmentList();

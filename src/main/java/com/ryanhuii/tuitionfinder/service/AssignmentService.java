@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssignmentService {
@@ -54,7 +55,8 @@ public class AssignmentService {
     public List<Assignment> getAssignmentsAppliedTo(List<AssignmentApplication> pendingApplications) {
         List<Assignment> assignmentsAppliedTo = new ArrayList<>();
         for (AssignmentApplication application : pendingApplications) {
-            assignmentsAppliedTo.add(repository.findAssignmentByAssignmentApplicationsContaining(application.getApplication_id()));
+            Optional<Assignment> checkIfNull = repository.findAssignmentByAssignmentApplicationsContaining(application.getApplication_id());
+            checkIfNull.ifPresent(assignmentsAppliedTo::add);
         }
         System.out.println("We found " + assignmentsAppliedTo.size() + " assignments linked with said applications");
         return assignmentsAppliedTo;

@@ -44,22 +44,37 @@ public class DashboardPendingApplicationsController {
     public void initialize() {
         Platform.runLater(() -> vBoxFocus.requestFocus());
         // get all my applications, as well as the corresponding assignment it is attached to
-        List<AssignmentApplication> pendingApplications = applicationService.getPendingApplications(TutorUtils.getTutor().getUid());
-        List<Assignment> assignmentsAppliedTo = assignmentService.getAssignmentsAppliedTo(pendingApplications);
-        titlePendingApplications.setText("Pending Applications (" + pendingApplications.size() + ")");
-        refreshAssignmentList(pendingApplications,assignmentsAppliedTo);
+        List<AssignmentApplication> allMyPendingApplications = applicationService.getPendingApplications(TutorUtils.getTutor().getUid());
+        List<Assignment> assignmentsAppliedTo = assignmentService.getAssignmentsAppliedTo(allMyPendingApplications);
+        titlePendingApplications.setText("Pending Applications (" + assignmentsAppliedTo.size() + ")"); // todo
+        System.out.println("Assignments that I applied to that still exist: " + assignmentsAppliedTo.size());
+        refreshAssignmentList(allMyPendingApplications,assignmentsAppliedTo);
     }
 
+    // this line of code's really important.
+    // if an assignment is deleted, the repository might not return an assignment object that contains whatever UID.
+    // therefore a safe measure would be to instead make the item list depend on the assignments available,
+    // and not depend on the number of applications, as some of these applications might no longer be associated
+    // with an assignment
     private void refreshAssignmentList(List<AssignmentApplication> pendingApplications, List<Assignment> assignmentsAppliedTo) {
         vBoxApplicationList.getChildren().clear();
+        // for each assignment, I want to inject it's corresponding application
         try {
-            for (int i=0;i< pendingApplications.size();i++) {
+            for (Assignment assignment : assignmentsAppliedTo) {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/pages/tutor/assignment-application-item.fxml"));
                 VBox itemVBox = loader.load();
 
+                AssignmentApplication linkedApplication = new AssignmentApplication();
+                for (AssignmentApplication application : pendingApplications) {
+                    if (assignment.getAssignmentApplications().contains(application.getApplication_id())) {
+                        System.out.println("Linked an application to this assignment: " + application.getApplication_id());
+                        linkedApplication = application;
+                    }
+                }
+
                 AssignmentApplicationItemController controller = loader.getController();
-                controller.transferAssignmentAndApplicationDetails(pendingApplications.get(i),assignmentsAppliedTo.get(i));
+                controller.transferAssignmentAndApplicationDetails(linkedApplication,assignment);
 
                 vBoxApplicationList.getChildren().add(itemVBox);
             }

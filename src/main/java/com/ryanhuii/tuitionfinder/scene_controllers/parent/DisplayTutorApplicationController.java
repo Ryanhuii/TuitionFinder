@@ -7,11 +7,13 @@ import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,8 @@ public class DisplayTutorApplicationController {
     Tutor tutor;
     AssignmentApplication application;
 
+    @FXML
+    private HBox btnConfirm;
     @FXML
     private Label txtRate;
     @FXML
@@ -61,6 +65,17 @@ public class DisplayTutorApplicationController {
         backArrow.setFitHeight(iconDimension);
         backArrow.setFitWidth(iconDimension);
         btnBack.setGraphic(backArrow);
+
+        // set up the look of the confirm button
+        btnConfirm.setStyle("-fx-background-color: #47B286; -fx-background-radius: 100");
+        btnConfirm.setCursor(Cursor.HAND);
+    }
+
+    @FXML
+    void onConfirmClicked(MouseEvent event) {
+        // confirm that this tutor will be the one teaching your child!
+        // Objects that need to be updated: Assignment, and uhhh....
+        System.out.println("Confirming tutor!");
     }
 
     @FXML
