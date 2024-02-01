@@ -1,7 +1,6 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 
 import com.ryanhuii.tuitionfinder.model.Tutor;
-import com.ryanhuii.tuitionfinder.repository.TutorRepository;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import javafx.application.Platform;

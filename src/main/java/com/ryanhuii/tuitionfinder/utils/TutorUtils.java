@@ -1,7 +1,12 @@
 package com.ryanhuii.tuitionfinder.utils;
 
-import com.ryanhuii.tuitionfinder.model.*;
-import com.ryanhuii.tuitionfinder.scene_controllers.tutor.*;
+import com.ryanhuii.tuitionfinder.model.Account;
+import com.ryanhuii.tuitionfinder.model.Assignment;
+import com.ryanhuii.tuitionfinder.model.AssignmentApplication;
+import com.ryanhuii.tuitionfinder.model.Tutor;
+import com.ryanhuii.tuitionfinder.scene_controllers.tutor.ApplyAssignmentController;
+import com.ryanhuii.tuitionfinder.scene_controllers.tutor.ViewApplicationController;
+import com.ryanhuii.tuitionfinder.scene_controllers.tutor.ViewAssignmentController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

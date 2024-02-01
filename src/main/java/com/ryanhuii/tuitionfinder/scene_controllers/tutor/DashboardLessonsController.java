@@ -1,7 +1,6 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.tutor;
 
 import com.ryanhuii.tuitionfinder.model.Assignment;
-import com.ryanhuii.tuitionfinder.model.AssignmentApplication;
 import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import com.ryanhuii.tuitionfinder.utils.TutorUtils;

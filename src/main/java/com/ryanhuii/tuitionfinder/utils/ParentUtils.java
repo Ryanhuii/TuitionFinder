@@ -1,7 +1,10 @@
 package com.ryanhuii.tuitionfinder.utils;
 
 import com.ryanhuii.tuitionfinder.model.*;
-import com.ryanhuii.tuitionfinder.scene_controllers.parent.*;
+import com.ryanhuii.tuitionfinder.scene_controllers.parent.DisplayTutorApplicationController;
+import com.ryanhuii.tuitionfinder.scene_controllers.parent.MyAssignmentsController;
+import com.ryanhuii.tuitionfinder.scene_controllers.parent.ViewPendingTutorsController;
+import com.ryanhuii.tuitionfinder.scene_controllers.parent.ViewTutorController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

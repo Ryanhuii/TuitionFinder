@@ -1,10 +1,8 @@
 package com.ryanhuii.tuitionfinder.service;
 
-import com.ryanhuii.tuitionfinder.model.Account;
 import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.model.AssignmentApplication;
 import com.ryanhuii.tuitionfinder.model.Tutor;
-import com.ryanhuii.tuitionfinder.repository.AccountRepository;
 import com.ryanhuii.tuitionfinder.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

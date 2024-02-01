@@ -1,6 +1,5 @@
 package com.ryanhuii.tuitionfinder.repository;
 
-import com.ryanhuii.tuitionfinder.model.Account;
 import com.ryanhuii.tuitionfinder.model.Tutor;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

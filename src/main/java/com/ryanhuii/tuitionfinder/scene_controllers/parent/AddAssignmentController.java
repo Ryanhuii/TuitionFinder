@@ -2,7 +2,6 @@ package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 
 import atlantafx.base.util.IntegerStringConverter;
 import com.ryanhuii.tuitionfinder.model.Assignment;
-import com.ryanhuii.tuitionfinder.model.Parent;
 import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.service.ParentService;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;

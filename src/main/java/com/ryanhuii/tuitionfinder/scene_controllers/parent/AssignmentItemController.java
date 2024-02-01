@@ -1,18 +1,13 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 
 import com.ryanhuii.tuitionfinder.model.Assignment;
-import com.ryanhuii.tuitionfinder.model.Parent;
 import com.ryanhuii.tuitionfinder.model.Tutor;
-import com.ryanhuii.tuitionfinder.service.AssignmentService;
-import com.ryanhuii.tuitionfinder.service.ParentService;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 public class AssignmentItemController {
 
@@ -54,10 +49,6 @@ public class AssignmentItemController {
     @FXML
     void onDeleteClicked(MouseEvent event) {
         // delete this assignment
-//        assignmentService.deleteAssignment(assignment);
-//        ParentUtils.setParent(parentService.deleteAssignmentFromAssignmentList(assignment));
-//        ParentUtils.switchScene("my-assignments.fxml",event,getClass());
-
         ParentUtils.deleteAssignment(event,getClass(),assignment);
     }
 

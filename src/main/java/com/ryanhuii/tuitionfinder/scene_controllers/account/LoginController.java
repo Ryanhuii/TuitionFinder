@@ -1,4 +1,5 @@
 package com.ryanhuii.tuitionfinder.scene_controllers.account;
+
 import com.ryanhuii.tuitionfinder.model.Account;
 import com.ryanhuii.tuitionfinder.model.Parent;
 import com.ryanhuii.tuitionfinder.model.Tutor;
@@ -9,14 +10,12 @@ import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
