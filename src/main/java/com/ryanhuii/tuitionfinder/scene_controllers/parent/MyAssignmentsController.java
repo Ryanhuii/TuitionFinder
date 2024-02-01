@@ -3,6 +3,7 @@ package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.service.ParentService;
+import com.ryanhuii.tuitionfinder.service.TutorService;
 import com.ryanhuii.tuitionfinder.utils.LoginUtils;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
 import javafx.application.Platform;
@@ -25,6 +26,8 @@ public class MyAssignmentsController {
     AssignmentService assignmentService;
     @Autowired
     ParentService parentService;
+    @Autowired
+    TutorService tutorService;
 
     // navigation
     @FXML
@@ -68,7 +71,7 @@ public class MyAssignmentsController {
                 VBox itemVBox = loader.load();
 
                 AssignmentItemController controller = loader.getController();
-                controller.transferAssignmentDetails(assignment);
+                controller.transferAssignmentDetails(assignment,tutorService.getTutorByUid(assignment.getTutorUID()));
 
                 vBoxAssignmentList.getChildren().add(itemVBox);
             }

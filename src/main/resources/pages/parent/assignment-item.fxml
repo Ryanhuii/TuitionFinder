@@ -166,7 +166,7 @@
                         <Insets bottom="4.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="txtAvailability" text="Monday, Friday, Wednesday">
+                  <Label fx:id="txtAvailability" text="Monday, Friday, Wednesday" wrapText="true">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>
@@ -207,7 +207,7 @@
                         <Image url="@../../images/person-icon.png" />
                      </image>
                   </ImageView>
-                  <Label text="View pending tutors">
+                  <Label fx:id="txtButtonTitle" text="View pending tutors">
                      <font>
                         <Font name="Inter Medium" size="14.0" />
                      </font>

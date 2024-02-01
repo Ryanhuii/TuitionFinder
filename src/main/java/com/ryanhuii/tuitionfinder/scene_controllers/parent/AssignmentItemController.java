@@ -2,6 +2,7 @@ package com.ryanhuii.tuitionfinder.scene_controllers.parent;
 
 import com.ryanhuii.tuitionfinder.model.Assignment;
 import com.ryanhuii.tuitionfinder.model.Parent;
+import com.ryanhuii.tuitionfinder.model.Tutor;
 import com.ryanhuii.tuitionfinder.service.AssignmentService;
 import com.ryanhuii.tuitionfinder.service.ParentService;
 import com.ryanhuii.tuitionfinder.utils.ParentUtils;
@@ -16,8 +17,11 @@ import org.springframework.stereotype.Component;
 public class AssignmentItemController {
 
     private Assignment assignment;
+    private Tutor tutor;
     boolean onGoingAssignment = false;
 
+    @FXML
+    private Label txtButtonTitle;
     @FXML
     private HBox hBoxStatus;
     @FXML
@@ -61,6 +65,8 @@ public class AssignmentItemController {
     void onViewPendingTutorsClick(MouseEvent event) {
         //System.out.println("viewing the tutors that applied to this assignment");
         if (!onGoingAssignment) ParentUtils.viewPendingTutors(assignment,event,getClass());
+        else ParentUtils.displayTutor(event,getClass(),tutor);
+        // if the assignment is ongoing, then can just view the tutor
     }
 
     void updateAssignmentDetailsDisplay() {
@@ -71,11 +77,6 @@ public class AssignmentItemController {
         txtDuration.setText(assignment.getDuration() + " months");
         txtRates.setText(assignment.getRates());
         txtParentNote.setText(assignment.getParentNote());
-//        String availability = "";
-//        for (int i=0;i<assignment.getAvailability().size();i++) {
-//            availability += assignment.getAvailability().get(i);
-//            if (i != assignment.getAvailability().size()-1) availability += ", ";
-//        }
         txtAvailability.setText(assignment.getAvailability().toString());
 
         hBoxIncomingRequest.setVisible(!assignment.getAssignmentApplications().isEmpty());
@@ -94,13 +95,15 @@ public class AssignmentItemController {
         // i also want to disable the "view pending tutors" button
         if (onGoingAssignment) {
             hBoxStatus.setStyle("-fx-background-color: #68d973;-fx-background-radius: 4");
-            btnViewPendingTutors.setVisible(false);
+            txtButtonTitle.setText("View Tutor");
+            //btnViewPendingTutors.setVisible(false);
             hBoxIncomingRequest.setVisible(false);
         }
     }
 
-    void transferAssignmentDetails(Assignment assignment) {
+    void transferAssignmentDetails(Assignment assignment, Tutor tutor) {
         this.assignment = assignment;
+        this.tutor = tutor;
         updateAssignmentDetailsDisplay();
     }
 

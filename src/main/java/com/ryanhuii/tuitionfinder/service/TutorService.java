@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TutorService {
@@ -26,7 +27,13 @@ public class TutorService {
 
     // Read
     public Tutor getTutorByUid(String uid) {
-        return repository.findById(uid).get();
+        Optional<Tutor> optionalTutor = repository.findById(uid);
+        if (optionalTutor.isPresent()) {
+            return repository.findById(uid).get();
+        } else {
+            return null;
+        }
+        //return repository.findById(uid).get();
     }
 
     public List<Tutor> getAllTutors() {
