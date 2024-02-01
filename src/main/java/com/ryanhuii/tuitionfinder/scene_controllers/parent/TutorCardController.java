@@ -38,17 +38,18 @@ public class TutorCardController {
 
     private void updateDisplayDetails() {
         txtTutorName.setText(tutor.getName());
-        if (tutor.getSubjects().size() > 2) {
-            // if there are more than 2 subjects, truncate the string
-            txtTutorSubjects.setText(tutor.getSubjects().get(0) + ", " + tutor.getSubjects().get(1) + "...");
-        } else {
-            String subjectDisplay = "";
-            for (int i = 0; i < tutor.getSubjects().size(); i++) {
-                subjectDisplay += tutor.getSubjects().get(i);
-                if (i != tutor.getSubjects().size()-1) subjectDisplay += ", ";
-            }
-            txtTutorSubjects.setText(subjectDisplay);
-        }
+        txtTutorSubjects.setText(tutor.getSubjects().toString());
+//        if (tutor.getSubjects().size() > 2) {
+//            // if there are more than 2 subjects, truncate the string
+//            txtTutorSubjects.setText(tutor.getSubjects().get(0) + ", " + tutor.getSubjects().get(1) + "...");
+//        } else {
+//            String subjectDisplay = "";
+//            for (int i = 0; i < tutor.getSubjects().size(); i++) {
+//                subjectDisplay += tutor.getSubjects().get(i);
+//                if (i != tutor.getSubjects().size()-1) subjectDisplay += ", ";
+//            }
+//            txtTutorSubjects.setText(subjectDisplay);
+//        }
     }
 }
 

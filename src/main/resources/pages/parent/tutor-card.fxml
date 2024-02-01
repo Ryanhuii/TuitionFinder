@@ -26,7 +26,7 @@
             <Insets bottom="5.0" />
          </VBox.margin>
       </Label>
-      <Label fx:id="txtTutorSubjects" style="-fx-background-color: #D6F1C6; -fx-background-radius: 12;" text="Subjects (String)">
+      <Label fx:id="txtTutorSubjects" maxWidth="160.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="80.0" style="-fx-background-color: #D6F1C6; -fx-background-radius: 12;" text="Subjects (String)" wrapText="true">
          <font>
             <Font name="NiveauGroteskRegular" size="14.0" />
          </font>

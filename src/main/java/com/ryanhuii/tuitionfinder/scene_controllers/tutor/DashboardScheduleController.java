@@ -48,6 +48,7 @@ public class DashboardScheduleController {
         List<AssignmentApplication> pendingApplications = applicationService.getPendingApplications(TutorUtils.getTutor().getUid());
         List<Assignment> assignmentsAppliedTo = assignmentService.getAssignmentsAppliedTo(pendingApplications);
         titlePendingApplications.setText("Pending (" + assignmentsAppliedTo.size() + ")");
+        TutorUtils.setPendingApplicationsCount(assignmentsAppliedTo.size());
 
         getMyOngoingAssignments();
         setupCalendar();
@@ -56,6 +57,7 @@ public class DashboardScheduleController {
     private void setupCalendar() {
         // testing for calendar view
         CalendarView calendarView = new CalendarView(); // (1)
+        //calendarView.setEntryDetailsCallback(param -> null); // todo
         Calendar assignmentCalender = new Calendar("My assignments"); // (2)
         //Entry<String> lesson = new Entry<>("Computing lesson");
 
@@ -70,6 +72,7 @@ public class DashboardScheduleController {
         CalendarSource myCalendarSource = new CalendarSource("My Assignments"); // (4)
         myCalendarSource.getCalendars().addAll(assignmentCalender);
 
+        calendarView.getCalendarSources().clear();
         calendarView.getCalendarSources().addAll(myCalendarSource); // (5)
         calendarView.setRequestedTime(LocalTime.now());
 
